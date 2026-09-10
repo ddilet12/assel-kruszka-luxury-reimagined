@@ -1,0 +1,2 @@
+import { Link } from "@tanstack/react-router";
+export function Brand({inverse=false}:{inverse?:boolean}){return <Link to="/" aria-label="ASSEL KRUSZKA home" className={`block leading-none ${inverse?"text-footer-foreground":"text-foreground"}`}><span className="font-display text-[20px] tracking-[0.08em] sm:text-[23px]">ASSEL KRUSZKA</span><span className="mt-1 block text-center text-[7px] font-semibold tracking-[0.28em] text-primary">REBELLIOUS ELEGANCE</span></Link>}
