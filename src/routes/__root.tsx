@@ -86,8 +86,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "ASSEL KRUSZKA" },
       { property: "og:description", content: "Luxury women’s fashion defined by rebellious elegance." },
       { property: "og:type", content: "website" },
+      // Social-preview image: the ASSEL KRUSZKA wordmark logo on a light card.
+      // Uses the current production URL since the project has no permanent
+      // domain yet — update this if/when a custom domain is connected.
+      { property: "og:image", content: "https://assel-kruszka-luxury-reimagined.vercel.app/og-image.png" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:image", content: "https://assel-kruszka-luxury-reimagined.vercel.app/og-image.png" },
     ],
     links: [
       {
@@ -97,7 +104,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap" },
-      { rel: "icon", href: "/favicon.png", type: "image/png" },
+      // Favicon set generated from the ASSEL KRUSZKA "AK" monogram (see
+      // src/assets/brand/ for the source logo file).
+      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+      { rel: "icon", href: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { rel: "icon", href: "/icon-192.png", type: "image/png", sizes: "192x192" },
+      { rel: "icon", href: "/icon-512.png", type: "image/png", sizes: "512x512" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png", sizes: "180x180" },
     ],
   }),
   shellComponent: RootShell,
