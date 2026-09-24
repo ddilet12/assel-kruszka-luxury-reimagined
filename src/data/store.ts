@@ -2,6 +2,12 @@ import burgundy from "@/assets/product-burgundy.jpg";
 import dress from "@/assets/product-ivory-dress.jpg";
 import whiteSuit from "@/assets/product-white-suit.jpg";
 import knit from "@/assets/product-knit.jpg";
+import pinstripeWhiteBlazer from "@/assets/product-pinstripe-white-blazer.jpg";
+import pinstripeWhiteSkirt from "@/assets/product-pinstripe-white-skirt.jpg";
+import pinstripeCharcoalBlazer from "@/assets/product-pinstripe-charcoal-blazer.jpg";
+import pinstripeCharcoalSkirt from "@/assets/product-pinstripe-charcoal-skirt.jpg";
+import pinstripeNavyEditorial from "@/assets/product-pinstripe-navy-editorial.jpg";
+import pinstripeNavySet from "@/assets/product-pinstripe-navy-set.jpg";
 
 export type Locale = "en" | "ru";
 export type Product = { id:string; slug:string; name:{en:string;ru:string}; price:number; category:string; images:string[]; colors:string[]; sizes:string[]; description:{en:string;ru:string} };
@@ -11,9 +17,12 @@ export const products: Product[] = [
 {id:"oversized",slug:"oversized-blazer",name:{en:"Oversized blazer",ru:"Пиджак оверсайз"},price:59990,category:"blazers",images:[burgundy,burgundy],colors:["Burgundy","Black"],sizes:["S","M","L"],description:{en:"Confident proportions and impeccable tailoring for modern layering.",ru:"Уверенные пропорции и безупречный крой для современных образов."}},
 {id:"pantsuit",slug:"white-pantsuit",name:{en:"Pantsuit",ru:"Брючный костюм"},price:49990,category:"jackets",images:[whiteSuit,whiteSuit],colors:["Ivory","Burgundy"],sizes:["XS","S","M","L","XL"],description:{en:"A luminous ivory suit balancing clean structure with ease.",ru:"Светлый костюм, сочетающий чистую архитектуру кроя и свободу."}},
 {id:"knit",slug:"knit-set",name:{en:"Knit set",ru:"Трикотажный комплект"},price:45990,category:"knitwear",images:[knit,knit],colors:["Cream","Charcoal"],sizes:["XS/S","M/L"],description:{en:"A refined ribbed set in a soft, substantial premium knit.",ru:"Изысканный комплект из мягкого плотного трикотажа премиум-класса."}},
+{id:"pinstripe-white",slug:"pinstripe-suit-white",name:{en:"Pinstripe suit — White",ru:"Костюм в полоску — белый"},price:79990,category:"sets",images:[pinstripeWhiteBlazer,pinstripeWhiteSkirt],colors:["White"],sizes:["XS","S","M","L"],description:{en:"A sharp pinstripe blazer and pencil skirt set with a red satin lining.",ru:"Чёткий костюм-комплект в полоску: пиджак и юбка-карандаш с красной атласной подкладкой."}},
+{id:"pinstripe-charcoal",slug:"pinstripe-suit-charcoal",name:{en:"Pinstripe suit — Charcoal",ru:"Костюм в полоску — графит"},price:74990,category:"sets",images:[pinstripeCharcoalBlazer,pinstripeCharcoalSkirt],colors:["Charcoal"],sizes:["XS","S","M","L"],description:{en:"A sharp pinstripe blazer and pencil skirt set with a red satin lining.",ru:"Чёткий костюм-комплект в полоску: пиджак и юбка-карандаш с красной атласной подкладкой."}},
+{id:"pinstripe-navy",slug:"pinstripe-suit-navy",name:{en:"Pinstripe suit — Navy",ru:"Костюм в полоску — тёмно-синий"},price:84990,category:"sets",images:[pinstripeNavyEditorial,pinstripeNavySet],colors:["Navy"],sizes:["XS","S","M","L"],description:{en:"A sharp pinstripe blazer and pencil skirt set with a red satin lining.",ru:"Чёткий костюм-комплект в полоску: пиджак и юбка-карандаш с красной атласной подкладкой."}},
 ];
 export const categories=[
-{slug:"suits",en:"Suits",ru:"Костюмы",image:burgundy},{slug:"blazers",en:"Blazers",ru:"Пиджаки",image:burgundy},{slug:"jackets",en:"Jackets",ru:"Брючные костюмы",image:whiteSuit},{slug:"dresses",en:"Dresses",ru:"Платья",image:dress},{slug:"outerwear",en:"Outerwear",ru:"Верхняя одежда",image:burgundy},{slug:"sets",en:"Sets",ru:"Костюмы-комплекты",image:burgundy},{slug:"knitwear",en:"Knitwear",ru:"Трикотаж",image:knit},
+{slug:"suits",en:"Suits",ru:"Костюмы",image:burgundy},{slug:"blazers",en:"Blazers",ru:"Пиджаки",image:burgundy},{slug:"jackets",en:"Jackets",ru:"Брючные костюмы",image:whiteSuit},{slug:"dresses",en:"Dresses",ru:"Платья",image:dress},{slug:"outerwear",en:"Outerwear",ru:"Верхняя одежда",image:burgundy},{slug:"sets",en:"Sets",ru:"Костюмы-комплекты",image:pinstripeNavyEditorial},{slug:"knitwear",en:"Knitwear",ru:"Трикотаж",image:knit},
 ];
 export const money=(value:number,locale:Locale)=>new Intl.NumberFormat(locale==="ru"?"ru-RU":"en-US").format(value)+" ₸";
 export const copy={
