@@ -1,14 +1,42 @@
 import { useQuery } from "@tanstack/react-query";
-import { localProducts, type Product } from "@/data/store";
-import { fetchLiveProducts } from "@/lib/shopify";
+import { localProducts, categories, type Product } from "@/data/store";
+import { fetchLiveProducts, type LiveProduct } from "@/lib/shopify";
+
+function mapCategory(productType: string): string {
+  const match = categories.find((c) => c.en.toLowerCase() === productType.trim().toLowerCase());
+  return match?.slug ?? "";
+}
+
+function fromShopify(live: LiveProduct): Product {
+  return {
+    id: live.handle,
+    slug: live.handle,
+    name: { en: live.title, ru: live.title },
+    price: live.price,
+    category: mapCategory(live.productType),
+    images: live.images.length ? live.images : [],
+    colors: live.colors,
+    sizes: live.sizes,
+    description: { en: live.description, ru: live.description },
+  };
+}
 
 async function loadProducts(): Promise<Product[]> {
   const live = await fetchLiveProducts();
-  if (live.size === 0) return localProducts;
-  return localProducts.map((p) => {
-    const match = live.get(p.slug);
-    if (!match) return p;
-    return { ...p, price: match.price, sizes: match.sizes.length ? match.sizes : p.sizes };
+  if (live.length === 0) return localProducts;
+  // Shopify is the source of truth for which products exist. Local copy
+  // supplies bilingual name/description/images for products we already
+  // have translations for; anything new gets built straight from Shopify.
+  return live.map((liveProduct) => {
+    const local = localProducts.find((p) => p.slug === liveProduct.handle);
+    if (!local) return fromShopify(liveProduct);
+    return {
+      ...local,
+      price: liveProduct.price,
+      sizes: liveProduct.sizes.length ? liveProduct.sizes : local.sizes,
+      colors: liveProduct.colors.length ? liveProduct.colors : local.colors,
+      images: liveProduct.images.length ? liveProduct.images : local.images,
+    };
   });
 }
 
