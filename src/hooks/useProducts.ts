@@ -41,11 +41,13 @@ async function loadProducts(): Promise<Product[]> {
 }
 
 export function useProducts(): Product[] {
+  // placeholderData (not initialData) so a real fetch always fires on
+  // mount instead of being treated as already-fresh and skipped.
   const { data } = useQuery({
     queryKey: ["shopify-products"],
     queryFn: loadProducts,
-    initialData: localProducts,
-    staleTime: 60_000,
+    placeholderData: localProducts,
+    staleTime: 10_000,
   });
-  return data;
+  return data ?? localProducts;
 }
