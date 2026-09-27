@@ -119,5 +119,11 @@ export async function createShopifyCheckout(
     lines: lines.map((l) => ({ merchandiseId: l.variantId, quantity: l.quantity })),
   });
   if (!data || data.cartCreate.userErrors.length > 0 || !data.cartCreate.cart) return null;
-  return data.cartCreate.cart.checkoutUrl;
+  // Shopify builds this URL on whichever domain is set as "primary" in
+  // Settings → Domains — currently our own custom domain, which points at
+  // this Vercel site, not Shopify. Force it back onto the stable
+  // *.myshopify.com host so checkout actually reaches Shopify.
+  const checkoutUrl = new URL(data.cartCreate.cart.checkoutUrl);
+  if (domain) checkoutUrl.host = domain;
+  return checkoutUrl.toString();
 }
