@@ -10,7 +10,8 @@ import pinstripeNavyEditorial from "@/assets/product-pinstripe-navy-editorial.jp
 import pinstripeNavySet from "@/assets/product-pinstripe-navy-set.jpg";
 
 export type Locale = "en" | "ru";
-export type Product = { id:string; slug:string; name:{en:string;ru:string}; price:number; category:string; images:string[]; colors:string[]; sizes:string[]; description:{en:string;ru:string}; inStock:boolean };
+export type ProductVariant = { id:string; size:string; color:string; availableForSale:boolean };
+export type Product = { id:string; slug:string; name:{en:string;ru:string}; price:number; category:string; images:string[]; colors:string[]; sizes:string[]; description:{en:string;ru:string}; inStock:boolean; variants?:ProductVariant[] };
 export const localProducts: Product[] = [
 {id:"classic",slug:"classic-blazer",name:{en:"Classic blazer",ru:"Классический пиджак"},price:89990,category:"suits",images:[burgundy,burgundy],colors:["Burgundy","Black"],sizes:["XS","S","M","L"],description:{en:"A precise double-breasted silhouette cut from fluid premium suiting.",ru:"Выверенный двубортный силуэт из премиальной костюмной ткани."},inStock:true},
 {id:"midi",slug:"midi-dress",name:{en:"Midi dress with a neckline",ru:"Платье миди с вырезом"},price:69990,category:"dresses",images:[dress,dress],colors:["Ivory","Black"],sizes:["XS","S","M","L"],description:{en:"A fluid midi dress with a softly draped neckline and sculpted waist.",ru:"Струящееся платье миди с мягкой драпировкой и подчеркнутой талией."},inStock:true},
@@ -30,11 +31,12 @@ en:{women:"Women",newIn:"New In",collections:"Collections",about:"About",shop:"S
   remove:"Remove",total:"Total",noProductsFound:"No products found.",wishlistEmpty:"Your wishlist is empty.",
   orderReceivedTitle:"Order received",orderReceivedText:"Thank you. Your order request has been created.",returnHome:"Return home",
   secureCheckout:"Secure checkout",contactDelivery:"Contact & delivery",firstName:"First name",lastName:"Last name",email:"Email",phone:"Phone",city:"City",postalCode:"Postal code",address:"Address",
-  paymentTitle:"Payment",paymentMethod:"Card / Kaspi Pay",paymentNote:"This preview does not process a real payment.",yourOrder:"Your order",placeOrder:"Place order",
+  paymentTitle:"Payment",paymentMethod:"Card / Kaspi Pay",paymentMethodNumber:"Transfer by phone number",paymentNumberPlaceholder:"The phone number for transfer will be added here soon.",paymentNote:"This preview does not process a real payment.",yourOrder:"Your order",placeOrder:"Place order",
   pleaseSelectSize:"Please select a size.",sizeGuide:"Size guide",deliveryInfo:"Delivery information",deliveryInfoText:"Complimentary delivery across Kazakhstan on qualifying orders.",returnsInfo:"Returns information",returnsInfoText:"Returns are accepted within 14 days in original condition.",
   notFoundTitle:"Page not found",notFoundText:"The page you're looking for doesn't exist or has been moved.",goHome:"Go home",errorTitle:"This page didn't load",errorText:"Something went wrong on our end. You can try refreshing or head back home.",tryAgain:"Try again",
   footerTaglineLine1:"Elegant style. Modern women.",footerTaglineLine2:"Timeless values.",paymentMethodsLabel:"Payment methods:",copyrightLine:"© 2026 ASSEL KRUSZKA. All rights reserved.",legalLine:"Privacy Policy　|　Terms of Service",
-  account:"Account",menu:"Menu",language:"Language",addToWishlist:"Add to wishlist",removeFromWishlist:"Remove from wishlist",soldOut:"Sold out"},
+  account:"Account",menu:"Menu",language:"Language",addToWishlist:"Add to wishlist",removeFromWishlist:"Remove from wishlist",soldOut:"Sold out",
+  redirectingCheckout:"Redirecting you to secure checkout…",cartEmptyCheckout:"Your bag is empty.",checkoutErrorTitle:"Checkout is unavailable",checkoutErrorText:"We couldn't start checkout. Please try again in a moment, or contact us."},
 ru:{women:"Женщины",newIn:"Новинки",collections:"Коллекции",about:"О бренде",shop:"Смотреть коллекцию",categories:"Категории",choose:"Выберите свой стиль",bestsellers:"Бестселлеры",popular:"Популярные модели",viewAll:"Смотреть все",aboutBrand:"О бренде",more:"Больше, чем одежда",learn:"Узнать больше",quality:"Премиальное качество",delivery:"Быстрая доставка",payment:"Безопасная оплата",care:"Забота и поддержка",search:"Поиск",wishlist:"Избранное",bag:"Корзина",checkout:"Оформить заказ",add:"Добавить в корзину",size:"Выберите размер",color:"Цвет",quantity:"Количество",
   remove:"Удалить",total:"Итого",noProductsFound:"Товары не найдены.",wishlistEmpty:"Ваш список избранного пуст.",
   orderReceivedTitle:"Заказ принят",orderReceivedText:"Спасибо! Ваш заказ оформлен.",returnHome:"На главную",
@@ -43,7 +45,8 @@ ru:{women:"Женщины",newIn:"Новинки",collections:"Коллекци�
   pleaseSelectSize:"Пожалуйста, выберите размер.",sizeGuide:"Таблица размеров",deliveryInfo:"Информация о доставке",deliveryInfoText:"Бесплатная доставка по Казахстану при соответствующих условиях заказа.",returnsInfo:"Информация о возврате",returnsInfoText:"Возврат принимается в течение 14 дней при сохранении товарного вида.",
   notFoundTitle:"Страница не найдена",notFoundText:"Такой страницы не существует, или она была перемещена.",goHome:"На главную",errorTitle:"Страница не загрузилась",errorText:"Что-то пошло не так с нашей стороны. Попробуйте обновить страницу или вернуться на главную.",tryAgain:"Повторить",
   footerTaglineLine1:"Элегантный стиль. Современная женщина.",footerTaglineLine2:"Вечные ценности.",paymentMethodsLabel:"Способы оплаты:",copyrightLine:"© 2026 ASSEL KRUSZKA. Все права защищены.",legalLine:"Политика конфиденциальности　|　Условия использования",
-  account:"Аккаунт",menu:"Меню",language:"Язык",addToWishlist:"Добавить в избранное",removeFromWishlist:"Убрать из избранного",soldOut:"Нет в наличии"}}
+  account:"Аккаунт",menu:"Меню",language:"Язык",addToWishlist:"Добавить в избранное",removeFromWishlist:"Убрать из избранного",soldOut:"Нет в наличии",
+  redirectingCheckout:"Перенаправляем вас на безопасную оплату…",cartEmptyCheckout:"Ваша корзина пуста.",checkoutErrorTitle:"Оформление сейчас недоступно",checkoutErrorText:"Не удалось начать оформление заказа. Попробуйте ещё раз чуть позже или напишите нам."}}
 export const footerNav={
 en:[{title:"Navigation",links:["Search","Customer Care","Contact Us","Delivery","Returns & Exchanges","Size Guide","Loyalty Program"]},
     {title:"About the Brand",links:["About Us","Partners","Wholesale Enquiries"]},

@@ -19,6 +19,7 @@ function fromShopify(live: LiveProduct): Product {
     sizes: live.sizes,
     description: { en: live.description, ru: live.description },
     inStock: live.inStock,
+    variants: live.variants,
   };
 }
 
@@ -38,6 +39,7 @@ async function loadProducts(): Promise<Product[]> {
       colors: liveProduct.colors.length ? liveProduct.colors : local.colors,
       images: liveProduct.images.length ? liveProduct.images : local.images,
       inStock: liveProduct.inStock,
+      variants: liveProduct.variants,
     };
   });
 }

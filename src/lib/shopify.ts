@@ -2,7 +2,7 @@ const domain = import.meta.env["VITE_SHOPIFY_DOMAIN"] as string | undefined;
 const token = import.meta.env["VITE_SHOPIFY_STOREFRONT_TOKEN"] as string | undefined;
 
 type ShopifyMoney = { amount: string };
-type ShopifyVariant = { availableForSale: boolean; selectedOptions: { name: string; value: string }[] };
+type ShopifyVariant = { id: string; availableForSale: boolean; selectedOptions: { name: string; value: string }[] };
 type ShopifyProduct = {
   handle: string;
   title: string;
@@ -15,6 +15,8 @@ type ShopifyProduct = {
   variants: { edges: { node: ShopifyVariant }[] };
 };
 
+export type LiveVariant = { id: string; size: string; color: string; availableForSale: boolean };
+
 export type LiveProduct = {
   handle: string;
   title: string;
@@ -25,6 +27,7 @@ export type LiveProduct = {
   colors: string[];
   images: string[];
   inStock: boolean;
+  variants: LiveVariant[];
 };
 
 async function shopifyFetch<T>(query: string, variables?: Record<string, unknown>): Promise<T | null> {
@@ -58,7 +61,7 @@ const PRODUCTS_QUERY = `
           options { name values }
           images(first: 6) { edges { node { url altText } } }
           variants(first: 40) {
-            edges { node { availableForSale selectedOptions { name value } } }
+            edges { node { id availableForSale selectedOptions { name value } } }
           }
         }
       }
@@ -82,6 +85,39 @@ export async function fetchLiveProducts(): Promise<LiveProduct[]> {
       colors: colorOption?.values ?? [],
       images: p.images.edges.map((e) => e.node.url),
       inStock: p.variants.edges.some((v) => v.node.availableForSale),
+      variants: p.variants.edges.map(({ node: v }) => ({
+        id: v.id,
+        size: v.selectedOptions.find((o) => o.name === "Size")?.value ?? "",
+        color: v.selectedOptions.find((o) => o.name === "Color")?.value ?? "",
+        availableForSale: v.availableForSale,
+      })),
     };
   });
+}
+
+const CART_CREATE_MUTATION = `
+  mutation CartCreate($lines: [CartLineInput!]!) {
+    cartCreate(input: { lines: $lines }) {
+      cart { checkoutUrl }
+      userErrors { message }
+    }
+  }
+`;
+
+// Creates a real Shopify cart from the lines the customer picked on our own
+// storefront, and hands back Shopify's own hosted checkout URL. Shopify
+// calculates shipping/tax and handles whichever payment methods are enabled
+// in Settings → Payments (including a manual method like Kaspi Pay) — we
+// don't process any payment ourselves.
+export async function createShopifyCheckout(
+  lines: { variantId: string; quantity: number }[],
+): Promise<string | null> {
+  if (lines.length === 0) return null;
+  const data = await shopifyFetch<{
+    cartCreate: { cart: { checkoutUrl: string } | null; userErrors: { message: string }[] };
+  }>(CART_CREATE_MUTATION, {
+    lines: lines.map((l) => ({ merchandiseId: l.variantId, quantity: l.quantity })),
+  });
+  if (!data || data.cartCreate.userErrors.length > 0 || !data.cartCreate.cart) return null;
+  return data.cartCreate.cart.checkoutUrl;
 }
