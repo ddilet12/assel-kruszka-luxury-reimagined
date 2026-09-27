@@ -26,6 +26,10 @@ export const categories=[
 {slug:"suits",en:"Suits",ru:"Костюмы",image:burgundy},{slug:"blazers",en:"Blazers",ru:"Пиджаки",image:burgundy},{slug:"jackets",en:"Jackets",ru:"Брючные костюмы",image:whiteSuit},{slug:"dresses",en:"Dresses",ru:"Платья",image:dress},{slug:"outerwear",en:"Outerwear",ru:"Верхняя одежда",image:burgundy},{slug:"sets",en:"Sets",ru:"Костюмы-комплекты",image:pinstripeNavyEditorial},{slug:"knitwear",en:"Knitwear",ru:"Трикотаж",image:knit},
 ];
 export const money=(value:number,locale:Locale)=>new Intl.NumberFormat(locale==="ru"?"ru-RU":"en-US").format(value)+" ₸";
+// PLACEHOLDER — the client hasn't decided the real free-shipping threshold
+// yet. Change this one number once they do; everything else (progress bar,
+// copy) reads from it.
+export const FREE_SHIPPING_THRESHOLD=50000;
 export const copy={
 en:{women:"Women",newIn:"New In",collections:"Collections",about:"About",shop:"Shop the collection",categories:"Categories",choose:"Choose your style",bestsellers:"Bestsellers",popular:"Most popular models",viewAll:"View all",aboutBrand:"About the brand",more:"More than just clothing",learn:"Learn more",quality:"Premium quality",delivery:"Fast delivery",payment:"Secure payment",care:"Care & support",search:"Search",wishlist:"Wishlist",bag:"Shopping bag",checkout:"Checkout",add:"Add to cart",size:"Select size",color:"Color",quantity:"Quantity",
   remove:"Remove",total:"Total",noProductsFound:"No products found.",wishlistEmpty:"Your wishlist is empty.",
@@ -36,7 +40,8 @@ en:{women:"Women",newIn:"New In",collections:"Collections",about:"About",shop:"S
   notFoundTitle:"Page not found",notFoundText:"The page you're looking for doesn't exist or has been moved.",goHome:"Go home",errorTitle:"This page didn't load",errorText:"Something went wrong on our end. You can try refreshing or head back home.",tryAgain:"Try again",
   footerTaglineLine1:"Elegant style. Modern women.",footerTaglineLine2:"Timeless values.",paymentMethodsLabel:"Payment methods:",copyrightLine:"© 2026 ASSEL KRUSZKA. All rights reserved.",legalLine:"Privacy Policy　|　Terms of Service",
   account:"Account",menu:"Menu",language:"Language",addToWishlist:"Add to wishlist",removeFromWishlist:"Remove from wishlist",soldOut:"Sold out",
-  redirectingCheckout:"Redirecting you to secure checkout…",cartEmptyCheckout:"Your bag is empty.",checkoutErrorTitle:"Checkout is unavailable",checkoutErrorText:"We couldn't start checkout. Please try again in a moment, or contact us."},
+  redirectingCheckout:"Redirecting you to secure checkout…",cartEmptyCheckout:"Your bag is empty.",checkoutErrorTitle:"Checkout is unavailable",checkoutErrorText:"We couldn't start checkout. Please try again in a moment, or contact us.",
+  freeShippingAdd:"Add {amount} more for free delivery",freeShippingUnlocked:"You've unlocked free delivery"},
 ru:{women:"Женщины",newIn:"Новинки",collections:"Коллекции",about:"О бренде",shop:"Смотреть коллекцию",categories:"Категории",choose:"Выберите свой стиль",bestsellers:"Бестселлеры",popular:"Популярные модели",viewAll:"Смотреть все",aboutBrand:"О бренде",more:"Больше, чем одежда",learn:"Узнать больше",quality:"Премиальное качество",delivery:"Быстрая доставка",payment:"Безопасная оплата",care:"Забота и поддержка",search:"Поиск",wishlist:"Избранное",bag:"Корзина",checkout:"Оформить заказ",add:"Добавить в корзину",size:"Выберите размер",color:"Цвет",quantity:"Количество",
   remove:"Удалить",total:"Итого",noProductsFound:"Товары не найдены.",wishlistEmpty:"Ваш список избранного пуст.",
   orderReceivedTitle:"Заказ принят",orderReceivedText:"Спасибо! Ваш заказ оформлен.",returnHome:"На главную",
@@ -46,7 +51,8 @@ ru:{women:"Женщины",newIn:"Новинки",collections:"Коллекци�
   notFoundTitle:"Страница не найдена",notFoundText:"Такой страницы не существует, или она была перемещена.",goHome:"На главную",errorTitle:"Страница не загрузилась",errorText:"Что-то пошло не так с нашей стороны. Попробуйте обновить страницу или вернуться на главную.",tryAgain:"Повторить",
   footerTaglineLine1:"Элегантный стиль. Современная женщина.",footerTaglineLine2:"Вечные ценности.",paymentMethodsLabel:"Способы оплаты:",copyrightLine:"© 2026 ASSEL KRUSZKA. Все права защищены.",legalLine:"Политика конфиденциальности　|　Условия использования",
   account:"Аккаунт",menu:"Меню",language:"Язык",addToWishlist:"Добавить в избранное",removeFromWishlist:"Убрать из избранного",soldOut:"Нет в наличии",
-  redirectingCheckout:"Перенаправляем вас на безопасную оплату…",cartEmptyCheckout:"Ваша корзина пуста.",checkoutErrorTitle:"Оформление сейчас недоступно",checkoutErrorText:"Не удалось начать оформление заказа. Попробуйте ещё раз чуть позже или напишите нам."}}
+  redirectingCheckout:"Перенаправляем вас на безопасную оплату…",cartEmptyCheckout:"Ваша корзина пуста.",checkoutErrorTitle:"Оформление сейчас недоступно",checkoutErrorText:"Не удалось начать оформление заказа. Попробуйте ещё раз чуть позже или напишите нам.",
+  freeShippingAdd:"Добавьте ещё {amount} до бесплатной доставки",freeShippingUnlocked:"Бесплатная доставка уже ваша"}}
 export const footerNav={
 en:[{title:"Navigation",links:["Search","Customer Care","Contact Us","Delivery","Returns & Exchanges","Size Guide","Loyalty Program"]},
     {title:"About the Brand",links:["About Us","Partners","Wholesale Enquiries"]},
