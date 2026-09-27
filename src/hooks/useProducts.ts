@@ -18,7 +18,8 @@ function fromShopify(live: LiveProduct): Product {
     colors: live.colors,
     sizes: live.sizes,
     description: { en: live.description, ru: live.description },
-    inStock: live.inStock,
+    // Forced true site-wide for now — inventory tracking isn't accurate yet.
+    inStock: true,
   };
 }
 
@@ -37,7 +38,8 @@ async function loadProducts(): Promise<Product[]> {
       sizes: liveProduct.sizes.length ? liveProduct.sizes : local.sizes,
       colors: liveProduct.colors.length ? liveProduct.colors : local.colors,
       images: liveProduct.images.length ? liveProduct.images : local.images,
-      inStock: liveProduct.inStock,
+      // Forced true site-wide for now — inventory tracking isn't accurate yet.
+      inStock: true,
     };
   });
 }
