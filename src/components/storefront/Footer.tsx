@@ -2,13 +2,17 @@ import { Instagram,Youtube,Search,ChevronDown } from "lucide-react";import { Lin
 const CONTACT_EMAIL="Info@asselkruszka.com";
 const CONTACT_LABELS=["Contact Us","Связаться с нами"];
 const INSTAGRAM_URL="https://instagram.com/assel.kruszka";
+const KASPI_PHONE="+7 778 965 4642";
 function Group({g}:{g:(typeof footerNav)["en"][number]}){return <div><h3 className="mb-4 text-xs font-semibold">{g.title}</h3><ul className="space-y-2 text-[11px] leading-tight text-footer-muted">{g.links.map(x=><li key={x}><a href={CONTACT_LABELS.includes(x)?`mailto:${CONTACT_EMAIL}`:"#"}>{x}</a></li>)}</ul></div>}
 export function Footer(){const{locale,setLocale}=useStore();const t=copy[locale];const groups=footerNav[locale];return <footer className="bg-footer text-footer-foreground"><div className="mx-auto max-w-[1440px] px-6 py-12 sm:px-10 lg:px-16"><div className="grid gap-10 md:grid-cols-[1.2fr_3fr_1.2fr]"><div><Brand inverse/><p className="mt-5 max-w-48 text-xs leading-5 text-footer-muted">{t.footerTaglineLine1}<br/>{t.footerTaglineLine2}</p><a href={`mailto:${CONTACT_EMAIL}`} className="mt-4 block text-xs text-footer-muted hover:text-footer-foreground">{CONTACT_EMAIL}</a><div className="mt-5 flex gap-4"><a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-footer-foreground/70"><Instagram className="size-4"/></a><span className="text-sm font-bold">TT</span><Youtube className="size-4"/></div></div><div className="hidden grid-cols-3 gap-10 md:grid">{groups.map(g=><Group g={g} key={g.title}/>) }</div><Accordion type="single" collapsible className="md:hidden">{groups.map(g=><AccordionItem value={g.title} key={g.title}><AccordionTrigger>{g.title}</AccordionTrigger><AccordionContent><Group g={g}/></AccordionContent></AccordionItem>)}</Accordion><div><h3 className="text-xs font-semibold">{t.language}</h3><label className="mt-3 flex border border-footer-line px-3"><select value={locale} onChange={e=>setLocale(e.target.value as "en"|"ru")} className="h-9 w-full bg-transparent text-xs outline-none"><option className="text-foreground" value="en">English</option><option className="text-foreground" value="ru">Русский</option></select><ChevronDown className="size-3 self-center"/></label><div className="mt-4 flex h-9 items-center border border-footer-line px-3 text-xs text-footer-muted"><span className="flex-1">{t.search}...</span><Search className="size-3"/></div>{/* Only Kaspi Pay is actually wired up today. The other methods below are
     commented out (not deleted) so the real logos/labels can be restored
     the moment each one is actually connected. */}
 <p className="mt-5 text-[10px] uppercase tracking-[0.14em] text-footer-muted">{t.paymentMethodsLabel}</p>
 <div className="mt-2.5 flex">
-  <span className="rounded-sm border border-footer-foreground/35 px-3 py-1.5 font-display text-[13px] tracking-wide text-footer-foreground">Kaspi Pay</span>
+  <span className="rounded-sm border border-footer-foreground/35 px-3 py-1.5 text-left">
+    <span className="block font-display text-[13px] tracking-wide text-footer-foreground">Kaspi Pay</span>
+    <span className="mt-0.5 block text-[10px] text-footer-muted">{KASPI_PHONE}</span>
+  </span>
 </div>
 {/*
 <div className="mt-2 flex flex-wrap gap-1.5">{["VISA","MC","PayPal","Kaspi QR","Kaspi Kredit","Kaspi Red","Pay","G Pay"].map(x=><span className="bg-footer-chip px-2 py-1 text-[8px] text-footer" key={x}>{x}</span>)}</div>
