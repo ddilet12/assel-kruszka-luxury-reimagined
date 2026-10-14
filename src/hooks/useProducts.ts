@@ -7,7 +7,7 @@ function mapCategory(productType: string): string {
   return match?.slug ?? "";
 }
 
-function fromShopify(live: LiveProduct): Product {
+export function fromShopify(live: LiveProduct): Product {
   return {
     id: live.handle,
     slug: live.handle,
@@ -46,14 +46,23 @@ async function loadProducts(): Promise<Product[]> {
   });
 }
 
-export function useProducts(): Product[] {
+const productsQuery = {
+  queryKey: ["shopify-products"],
+  queryFn: loadProducts,
   // placeholderData (not initialData) so a real fetch always fires on
   // mount instead of being treated as already-fresh and skipped.
-  const { data } = useQuery({
-    queryKey: ["shopify-products"],
-    queryFn: loadProducts,
-    placeholderData: localProducts,
-    staleTime: 10_000,
-  });
+  placeholderData: localProducts,
+  staleTime: 10_000,
+};
+
+export function useProducts(): Product[] {
+  const { data } = useQuery(productsQuery);
   return data ?? localProducts;
+}
+
+// True once the real catalog (with Shopify variant IDs) has loaded, not just
+// the local placeholder.
+export function useProductsReady(): boolean {
+  const { isFetched, isPlaceholderData } = useQuery(productsQuery);
+  return isFetched && !isPlaceholderData;
 }
