@@ -59,7 +59,7 @@ const PRODUCTS_QUERY = `
           totalInventory
           priceRange { minVariantPrice { amount } }
           options { name values }
-          images(first: 6) { edges { node { url altText } } }
+          images(first: 20) { edges { node { url altText } } }
           variants(first: 40) {
             edges { node { id availableForSale selectedOptions { name value } } }
           }

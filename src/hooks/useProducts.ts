@@ -7,6 +7,7 @@ function mapCategory(productType: string): string {
   return match?.slug ?? "";
 }
 
+// One language per product: titles and descriptions are edited in Shopify, so both locales show them as written.
 export function fromShopify(live: LiveProduct): Product {
   return {
     id: live.handle,
@@ -14,57 +15,35 @@ export function fromShopify(live: LiveProduct): Product {
     name: { en: live.title, ru: live.title },
     price: live.price,
     category: mapCategory(live.productType),
-    images: live.images.length ? live.images : [],
+    images: live.images,
     colors: live.colors,
     sizes: live.sizes,
     description: { en: live.description, ru: live.description },
-    // Forced true site-wide for now — inventory tracking isn't accurate yet.
-    inStock: true,
+    inStock: live.inStock,
     variants: live.variants,
   };
 }
 
-async function loadProducts(): Promise<Product[]> {
+// Shopify is the single source of truth for what the shop sells. The bundled local copy is only a
+// fallback for when Shopify can't be reached at all.
+export async function loadProducts(): Promise<Product[]> {
   const live = await fetchLiveProducts();
-  if (live.length === 0) return localProducts;
-  // Shopify is the source of truth for which products exist. Local copy
-  // supplies bilingual name/description/images for products we already
-  // have translations for; anything new gets built straight from Shopify.
-  return live.map((liveProduct) => {
-    const local = localProducts.find((p) => p.slug === liveProduct.handle);
-    if (!local) return fromShopify(liveProduct);
-    return {
-      ...local,
-      // Titles are edited in Shopify, so they win over the local copy (one title serves both languages).
-      name: { en: liveProduct.title, ru: liveProduct.title },
-      price: liveProduct.price,
-      sizes: liveProduct.sizes.length ? liveProduct.sizes : local.sizes,
-      colors: liveProduct.colors.length ? liveProduct.colors : local.colors,
-      images: liveProduct.images.length ? liveProduct.images : local.images,
-      // Forced true site-wide for now — inventory tracking isn't accurate yet.
-      inStock: true,
-      variants: liveProduct.variants,
-    };
-  });
+  return live.length === 0 ? localProducts : live.map(fromShopify);
 }
 
 const productsQuery = {
   queryKey: ["shopify-products"],
   queryFn: loadProducts,
-  // placeholderData (not initialData) so a real fetch always fires on
-  // mount instead of being treated as already-fresh and skipped.
-  placeholderData: localProducts,
   staleTime: 10_000,
 };
 
 export function useProducts(): Product[] {
   const { data } = useQuery(productsQuery);
-  return data ?? localProducts;
+  return data ?? [];
 }
 
-// True once the real catalog (with Shopify variant IDs) has loaded, not just
-// the local placeholder.
+// True once the real catalog (with Shopify variant IDs) has loaded.
 export function useProductsReady(): boolean {
-  const { isFetched, isPlaceholderData } = useQuery(productsQuery);
-  return isFetched && !isPlaceholderData;
+  const { isFetched } = useQuery(productsQuery);
+  return isFetched;
 }
