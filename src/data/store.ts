@@ -50,9 +50,9 @@ ru:{women:"Женщины",newIn:"Новинки",collections:"Коллекци�
   redirectingCheckout:"Перенаправляем вас на безопасную оплату…",kaspiTitle:"Оформление заказа",kaspiName:"Имя и фамилия",kaspiPhone:"Номер телефона",kaspiAddress:"Адрес доставки (город, улица, дом)",kaspiComment:"Комментарий (необязательно)",kaspiPay:"Оплатить через Kaspi",kaspiCreating:"Открываем оплату…",kaspiNote:"Вы перейдёте на защищённую страницу оплаты Kaspi Pay (сервис ApiPay). Заказ подтверждаем после оплаты.",kaspiErrName:"Введите имя.",kaspiErrPhone:"Введите номер телефона Казахстана, например +7 701 123 45 67.",kaspiErrAddress:"Введите адрес доставки.",kaspiErrComment:"Комментарий слишком длинный.",kaspiErrEmpty:"Корзина пуста.",kaspiErrGeneric:"Не удалось открыть страницу оплаты. Попробуйте ещё раз или напишите нам.",cartEmptyCheckout:"Ваша корзина пуста.",checkoutErrorTitle:"Оформление сейчас недоступно",checkoutErrorText:"Не удалось начать оформление заказа. Попробуйте ещё раз чуть позже или напишите нам.",
   }}
 export const footerNav={
-en:[{title:"Navigation",links:["Search","Customer Care","Contact Us","Loyalty Program"]},
+en:[{title:"Navigation",links:["Search","Customer Care","Contact Us"]},
     {title:"About the Brand",links:["About Us","Partners","Wholesale Enquiries"]},
     {title:"Legal Information",links:["Privacy Policy","Terms of Service"]}],
-ru:[{title:"Навигация",links:["Поиск","Помощь клиентам","Связаться с нами","Программа лояльности"]},
+ru:[{title:"Навигация",links:["Поиск","Помощь клиентам","Связаться с нами"]},
     {title:"О бренде",links:["О нас","Партнёры","Оптовые предложения"]},
     {title:"Правовая информация",links:["Политика конфиденциальности","Условия использования"]}]}
