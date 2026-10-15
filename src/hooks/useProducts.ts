@@ -35,6 +35,8 @@ async function loadProducts(): Promise<Product[]> {
     if (!local) return fromShopify(liveProduct);
     return {
       ...local,
+      // Titles are edited in Shopify, so they win over the local copy (one title serves both languages).
+      name: { en: liveProduct.title, ru: liveProduct.title },
       price: liveProduct.price,
       sizes: liveProduct.sizes.length ? liveProduct.sizes : local.sizes,
       colors: liveProduct.colors.length ? liveProduct.colors : local.colors,
