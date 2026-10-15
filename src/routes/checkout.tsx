@@ -1,13 +1,90 @@
-import { createFileRoute,Link } from "@tanstack/react-router";import { useEffect,useRef,useState } from "react";import { Loader2 } from "lucide-react";import { Button } from "@/components/ui/button";import { copy } from "@/data/store";import { useCartDetails,useStore } from "@/state/storefront";import { createShopifyCheckout } from "@/lib/shopify";import { useProductsReady } from "@/hooks/useProducts";
-export const Route=createFileRoute("/checkout")({head:()=>({meta:[{title:"Checkout — ASSEL KRUSZKA"},{name:"description",content:"Complete your ASSEL KRUSZKA order."},{property:"og:title",content:"Checkout — ASSEL KRUSZKA"},{property:"og:description",content:"Complete your ASSEL KRUSZKA order."},{property:"og:type",content:"website"},{name:"twitter:card",content:"summary_large_image"}]}),component:Page});
-// This route no longer collects payment itself — it hands the cart straight
-// to Shopify's own hosted checkout (real tax/shipping calculation, and
-// whichever payment methods are enabled in Shopify Settings → Payments).
-function Page(){const st=useStore(),items=useCartDetails(),t=copy[st.locale],ready=useProductsReady();const[failed,setFailed]=useState(false);const started=useRef(false);
-// A line can lack a variantId if the size was picked before the Shopify
-// catalog loaded — resolve it from the loaded variants instead of silently
-// dropping that item from the order.
-useEffect(()=>{if(started.current||items.length===0)return;const missing=items.some(({line})=>!line.variantId);if(missing&&!ready)return;const lines=items.map(({line,product})=>{const variantId=line.variantId??product?.variants?.find(v=>v.size===line.size&&(v.color===line.color||!v.color))?.id;return variantId?{variantId,quantity:line.quantity}:null});if(lines.some(l=>l===null)){setFailed(true);return}started.current=true;createShopifyCheckout(lines as{variantId:string;quantity:number}[]).then(url=>{if(url)window.location.href=url;else setFailed(true)})},[items,ready]);
-if(failed)return <main className="page-wrap text-center"><h1 className="mt-6 font-display text-4xl">{t.checkoutErrorTitle}</h1><p className="mt-4 text-muted-foreground">{t.checkoutErrorText}</p><Button asChild className="mt-8"><Link to="/cart">{t.bag}</Link></Button></main>;
-if(items.length===0)return <main className="page-wrap text-center"><p className="text-muted-foreground">{t.cartEmptyCheckout}</p><Button asChild className="mt-6"><Link to="/catalog" search={{category:"all",q:""}}>{t.shop}</Link></Button></main>;
-return <main className="page-wrap text-center"><Loader2 className="mx-auto size-8 animate-spin text-primary"/><p className="mt-4 text-muted-foreground">{t.redirectingCheckout}</p></main>}
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useRef, useState } from "react";
+import { Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { copy } from "@/data/store";
+import { useCartDetails, useStore } from "@/state/storefront";
+import { createShopifyCheckout } from "@/lib/shopify";
+import { useProductsReady } from "@/hooks/useProducts";
+import { getPaymentMode, type KaspiLine } from "@/lib/kaspi-checkout.server";
+import { KaspiCheckoutForm } from "@/components/storefront/KaspiCheckoutForm";
+
+export const Route = createFileRoute("/checkout")({
+  head: () => ({
+    meta: [
+      { title: "Checkout — ASSEL KRUSZKA" },
+      { name: "description", content: "Complete your ASSEL KRUSZKA order." },
+      { property: "og:title", content: "Checkout — ASSEL KRUSZKA" },
+      { property: "og:description", content: "Complete your ASSEL KRUSZKA order." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  component: Page,
+});
+
+// With APIPAY_API_KEY set on the server, checkout collects name/phone/address and sends the buyer to a
+// Kaspi payment page (ApiPay). Without it, the cart goes straight to Shopify's own hosted checkout.
+function Page() {
+  const st = useStore();
+  const items = useCartDetails();
+  const t = copy[st.locale];
+  const ready = useProductsReady();
+  const [failed, setFailed] = useState(false);
+  const [kaspi, setKaspi] = useState<boolean | null>(null);
+  const started = useRef(false);
+
+  useEffect(() => {
+    getPaymentMode().then((mode) => setKaspi(mode.kaspi)).catch(() => setKaspi(false));
+  }, []);
+
+  // A line can lack a variantId if the size was picked before the Shopify catalog loaded — resolve it from the
+  // loaded variants instead of silently dropping that item from the order.
+  // undefined = catalog still loading, null = some line has no matching Shopify variant.
+  const missingVariant = items.some(({ line }) => !line.variantId);
+  const resolved = items.map(({ line, product }) => {
+    const variantId = line.variantId ?? product?.variants?.find((v) => v.size === line.size && (v.color === line.color || !v.color))?.id;
+    return variantId ? { variantId, quantity: line.quantity } : null;
+  });
+  const lines: KaspiLine[] | null | undefined = missingVariant && !ready ? undefined : resolved.some((l) => l === null) ? null : (resolved as KaspiLine[]);
+  const total = items.reduce((sum, { line, product }) => sum + (product?.price ?? 0) * line.quantity, 0);
+
+  useEffect(() => {
+    if (started.current || items.length === 0 || kaspi === null || lines === undefined) return;
+    if (lines === null) {
+      setFailed(true);
+      return;
+    }
+    if (kaspi) return;
+    started.current = true;
+    createShopifyCheckout(lines).then((url) => {
+      if (url) window.location.href = url;
+      else setFailed(true);
+    });
+  });
+
+  if (failed) {
+    return (
+      <main className="page-wrap text-center">
+        <h1 className="mt-6 font-display text-4xl">{t.checkoutErrorTitle}</h1>
+        <p className="mt-4 text-muted-foreground">{t.checkoutErrorText}</p>
+        <Button asChild className="mt-8"><Link to="/cart">{t.bag}</Link></Button>
+      </main>
+    );
+  }
+  if (items.length === 0) {
+    return (
+      <main className="page-wrap text-center">
+        <p className="text-muted-foreground">{t.cartEmptyCheckout}</p>
+        <Button asChild className="mt-6"><Link to="/catalog" search={{ category: "all", q: "" }}>{t.shop}</Link></Button>
+      </main>
+    );
+  }
+  if (kaspi && lines) return <KaspiCheckoutForm lines={lines} total={total} locale={st.locale} />;
+  return (
+    <main className="page-wrap text-center">
+      <Loader2 className="mx-auto size-8 animate-spin text-primary" />
+      <p className="mt-4 text-muted-foreground">{t.redirectingCheckout}</p>
+    </main>
+  );
+}
