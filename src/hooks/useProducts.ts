@@ -44,7 +44,7 @@ export function useProducts(): Product[] {
 
 // The three collections shown in the menu until Shopify returns its own list.
 const DEFAULT_COLLECTIONS: LiveCollection[] = [
-  { handle: "ak-power-dressing", title: "AK Power Dressing", productHandles: [] },
+  { handle: "power-dressing", title: "Power Dressing", productHandles: [] },
   { handle: "the-devil-wears-satin", title: "The Devil Wears Satin", productHandles: [] },
   { handle: "velvet-rebellion", title: "Velvet Rebellion", productHandles: [] },
 ];
