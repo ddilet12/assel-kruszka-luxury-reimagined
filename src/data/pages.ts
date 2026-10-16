@@ -14,11 +14,13 @@ export const infoPages: Record<Locale, Record<InfoPageSlug, InfoPageCopy>> = {
   en: {
     delivery: {
       title: "Delivery",
-      intro: "We deliver across Kazakhstan.",
+      intro: "We deliver across Kazakhstan and can ship abroad on request.",
       sections: [
-        { heading: "Delivery in Kazakhstan", body: "Complimentary delivery across Kazakhstan on qualifying orders. After you place your order, we confirm the delivery terms and timing for your address." },
-        { heading: "Outside Kazakhstan", body: "Write to info@asselkruszka.com before ordering and we will tell you what is possible for your country." },
-        { heading: "Your order on its way", body: "We contact you by phone or email when your order ships, so you always know when to expect it." },
+        { heading: "Astana and Almaty", body: "1–2 business days by courier after your order ships." },
+        { heading: "Other cities of Kazakhstan", body: "3–7 business days by courier or Kazpost, depending on the city." },
+        { heading: "Delivery cost", body: "Complimentary delivery across Kazakhstan on qualifying orders. We confirm the exact cost and date with you after you place the order." },
+        { heading: "International shipping", body: "Available on request: write to info@asselkruszka.com before ordering and we will tell you the terms for your country." },
+        { heading: "Tracking", body: "We contact you by phone or email when your order ships and send the tracking details, so you always know when to expect it." },
       ],
     },
     returns: {
@@ -34,16 +36,19 @@ export const infoPages: Record<Locale, Record<InfoPageSlug, InfoPageCopy>> = {
     },
     "size-guide": {
       title: "Size Guide",
-      intro: "Sizes are shown on every product page.",
+      intro: "Sizes are shown on every product page. Measurements below are body measurements in centimetres.",
       sections: [
-        { heading: "Need help choosing?", body: "If you are between sizes or unsure, email info@asselkruszka.com with your height and measurements (bust, waist, hips) and we will help you choose the right size." },
+        { heading: "Size chart", body: "XS (RU 40–42): bust 82–86, waist 62–66, hips 88–92\nS (RU 42–44): bust 86–90, waist 66–70, hips 92–96\nM (RU 44–46): bust 90–94, waist 70–74, hips 96–100\nL (RU 46–48): bust 94–98, waist 74–78, hips 100–104" },
+        { heading: "How to measure", body: "Bust: around the fullest part. Waist: around the narrowest part. Hips: around the fullest part. Keep the tape snug but not tight." },
+        { heading: "Need help choosing?", body: "If you are between sizes or unsure, email info@asselkruszka.com with your height and measurements and we will help you choose the right size." },
       ],
     },
     loyalty: {
       title: "Loyalty Program",
-      intro: "Our loyalty program is being prepared.",
+      intro: "A small circle for the clients who choose ASSEL KRUSZKA again and again.",
       sections: [
-        { heading: "Be the first to know", body: "Follow us on Instagram or write to info@asselkruszka.com — we will let you know the moment it opens." },
+        { heading: "What you get", body: "Early access to new collections and personal help with choosing a size or a look." },
+        { heading: "How to join", body: "Place your first order — we will contact you about joining. Questions: info@asselkruszka.com." },
       ],
     },
     privacy: {
@@ -75,11 +80,13 @@ export const infoPages: Record<Locale, Record<InfoPageSlug, InfoPageCopy>> = {
   ru: {
     delivery: {
       title: "Доставка",
-      intro: "Мы доставляем по всему Казахстану.",
+      intro: "Мы доставляем по всему Казахстану и можем отправить заказ за границу по запросу.",
       sections: [
-        { heading: "Доставка по Казахстану", body: "Бесплатная доставка по Казахстану при соответствующих условиях заказа. После оформления заказа мы подтверждаем условия и сроки доставки на ваш адрес." },
-        { heading: "За пределы Казахстана", body: "Напишите на info@asselkruszka.com до заказа — мы подскажем, что возможно для вашей страны." },
-        { heading: "Ваш заказ в пути", body: "Мы свяжемся с вами по телефону или почте, когда заказ будет отправлен, чтобы вы знали, когда его ждать." },
+        { heading: "Астана и Алматы", body: "1–2 рабочих дня курьером после отправки заказа." },
+        { heading: "Другие города Казахстана", body: "3–7 рабочих дней курьером или Казпочтой, в зависимости от города." },
+        { heading: "Стоимость доставки", body: "Бесплатная доставка по Казахстану при соответствующих условиях заказа. Точную стоимость и дату мы подтверждаем с вами после оформления заказа." },
+        { heading: "Доставка за границу", body: "Доступна по запросу: напишите на info@asselkruszka.com до заказа, и мы сообщим условия для вашей страны." },
+        { heading: "Отслеживание", body: "Мы свяжемся с вами по телефону или почте, когда заказ будет отправлен, и пришлём данные для отслеживания — вы всегда будете знать, когда его ждать." },
       ],
     },
     returns: {
@@ -95,16 +102,19 @@ export const infoPages: Record<Locale, Record<InfoPageSlug, InfoPageCopy>> = {
     },
     "size-guide": {
       title: "Таблица размеров",
-      intro: "Размеры указаны на странице каждого товара.",
+      intro: "Размеры указаны на странице каждого товара. Ниже — обхваты тела в сантиметрах.",
       sections: [
-        { heading: "Нужна помощь с выбором?", body: "Если вы между размерами или сомневаетесь, напишите на info@asselkruszka.com свой рост и мерки (грудь, талия, бёдра) — поможем подобрать размер." },
+        { heading: "Таблица размеров", body: "XS (RU 40–42): грудь 82–86, талия 62–66, бёдра 88–92\nS (RU 42–44): грудь 86–90, талия 66–70, бёдра 92–96\nM (RU 44–46): грудь 90–94, талия 70–74, бёдра 96–100\nL (RU 46–48): грудь 94–98, талия 74–78, бёдра 100–104" },
+        { heading: "Как снять мерки", body: "Грудь — по самой выступающей части. Талия — по самой узкой части. Бёдра — по самой широкой части. Сантиметр должен прилегать, но не стягивать." },
+        { heading: "Нужна помощь с выбором?", body: "Если вы между размерами или сомневаетесь, напишите на info@asselkruszka.com свой рост и мерки — поможем подобрать размер." },
       ],
     },
     loyalty: {
       title: "Программа лояльности",
-      intro: "Мы готовим программу лояльности.",
+      intro: "Небольшой круг для клиентов, которые выбирают ASSEL KRUSZKA снова и снова.",
       sections: [
-        { heading: "Узнайте первыми", body: "Подпишитесь на нас в Instagram или напишите на info@asselkruszka.com — сообщим, как только она откроется." },
+        { heading: "Что вы получаете", body: "Ранний доступ к новым коллекциям и личную помощь с выбором размера или образа." },
+        { heading: "Как присоединиться", body: "Сделайте первый заказ — мы свяжемся с вами. Вопросы: info@asselkruszka.com." },
       ],
     },
     privacy: {

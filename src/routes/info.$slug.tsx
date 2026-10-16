@@ -27,7 +27,7 @@ function InfoPage() {
           {page.sections.map((s) => (
             <section key={s.heading}>
               <h2 className="text-sm font-semibold">{s.heading}</h2>
-              <p className="mt-2 text-sm leading-7 text-muted-foreground">{s.body}</p>
+              <p className="mt-2 whitespace-pre-line text-sm leading-7 text-muted-foreground">{s.body}</p>
             </section>
           ))}
           {slug === "terms" && SELLER.name && (
