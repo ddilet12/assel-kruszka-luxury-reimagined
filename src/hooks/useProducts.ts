@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { localProducts, categories, type Product } from "@/data/store";
-import { fetchLiveProducts, type LiveProduct } from "@/lib/shopify";
+import { fetchLiveCollections, fetchLiveProducts, type LiveCollection, type LiveProduct } from "@/lib/shopify";
 
 function mapCategory(productType: string): string {
   const match = categories.find((c) => c.en.toLowerCase() === productType.trim().toLowerCase());
@@ -40,6 +40,24 @@ const productsQuery = {
 export function useProducts(): Product[] {
   const { data } = useQuery(productsQuery);
   return data ?? [];
+}
+
+// The three collections shown in the menu until Shopify returns its own list.
+const DEFAULT_COLLECTIONS: LiveCollection[] = [
+  { handle: "ak-power-dressing", title: "AK Power Dressing", productHandles: [] },
+  { handle: "the-devil-wears-satin", title: "The Devil Wears Satin", productHandles: [] },
+  { handle: "velvet-rebellion", title: "Velvet Rebellion", productHandles: [] },
+];
+
+const collectionsQuery = {
+  queryKey: ["shopify-collections"],
+  queryFn: fetchLiveCollections,
+  staleTime: 10_000,
+};
+
+export function useCollections(): LiveCollection[] {
+  const { data } = useQuery(collectionsQuery);
+  return data && data.length > 0 ? data : DEFAULT_COLLECTIONS;
 }
 
 // True once the real catalog (with Shopify variant IDs) has loaded.

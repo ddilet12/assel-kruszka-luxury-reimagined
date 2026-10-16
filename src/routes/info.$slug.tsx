@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useStore } from "@/state/storefront";
-import { infoPages, type InfoPageSlug } from "@/data/pages";
+import { infoPages, SELLER, type InfoPageSlug } from "@/data/pages";
 
 export const Route = createFileRoute("/info/$slug")({
   loader: ({ params }) => {
@@ -30,6 +30,12 @@ function InfoPage() {
               <p className="mt-2 text-sm leading-7 text-muted-foreground">{s.body}</p>
             </section>
           ))}
+          {slug === "terms" && SELLER.name && (
+            <section>
+              <h2 className="text-sm font-semibold">{locale === "en" ? "Seller" : "Продавец"}</h2>
+              <p className="mt-2 text-sm leading-7 text-muted-foreground">{[SELLER.name, SELLER.taxId, SELLER.address].filter(Boolean).join(", ")}</p>
+            </section>
+          )}
         </div>
         <Link to="/catalog" search={{ category: "all", q: "" }} className="mt-10 inline-block text-xs underline">
           {locale === "en" ? "Back to the collection" : "Назад к коллекции"}

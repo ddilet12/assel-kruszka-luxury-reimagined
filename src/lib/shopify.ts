@@ -69,6 +69,19 @@ const PRODUCTS_QUERY = `
   }
 `;
 
+export type LiveCollection = { handle: string; title: string; productHandles: string[] };
+
+/** Collections the brand filed products into (via the hidden studio panel / Shopify admin). */
+export async function fetchLiveCollections(): Promise<LiveCollection[]> {
+  const data = await shopifyFetch<{ collections: { nodes: { handle: string; title: string; products: { nodes: { handle: string }[] } }[] } }>(
+    `query Collections { collections(first: 20) { nodes { handle title products(first: 50) { nodes { handle } } } } }`,
+  );
+  if (!data) return [];
+  return data.collections.nodes
+    .filter((c) => c.handle !== "frontpage")
+    .map((c) => ({ handle: c.handle, title: c.title, productHandles: c.products.nodes.map((p) => p.handle) }));
+}
+
 export async function fetchLiveProducts(): Promise<LiveProduct[]> {
   const data = await shopifyFetch<{ products: { edges: { node: ShopifyProduct }[] } }>(PRODUCTS_QUERY);
   if (!data) return [];
