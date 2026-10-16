@@ -14,6 +14,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as CatalogRouteImport } from './routes/catalog'
 import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as Studio49a60a9bRouteImport } from './routes/studio-49a60a9b'
 import { Route as WishlistRouteImport } from './routes/wishlist'
 import { Route as InfoSlugRouteImport } from './routes/info.$slug'
 import { Route as ProductSlugRouteImport } from './routes/product.$slug'
@@ -43,6 +44,11 @@ const CheckoutRoute = CheckoutRouteImport.update({
   path: '/checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
+const Studio49a60a9bRoute = Studio49a60a9bRouteImport.update({
+  id: '/studio-49a60a9b',
+  path: '/studio-49a60a9b',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WishlistRoute = WishlistRouteImport.update({
   id: '/wishlist',
   path: '/wishlist',
@@ -65,6 +71,7 @@ export interface FileRoutesByFullPath {
   '/cart': typeof CartRoute
   '/catalog': typeof CatalogRoute
   '/checkout': typeof CheckoutRoute
+  '/studio-49a60a9b': typeof Studio49a60a9bRoute
   '/wishlist': typeof WishlistRoute
   '/info/$slug': typeof InfoSlugRoute
   '/product/$slug': typeof ProductSlugRoute
@@ -75,6 +82,7 @@ export interface FileRoutesByTo {
   '/cart': typeof CartRoute
   '/catalog': typeof CatalogRoute
   '/checkout': typeof CheckoutRoute
+  '/studio-49a60a9b': typeof Studio49a60a9bRoute
   '/wishlist': typeof WishlistRoute
   '/info/$slug': typeof InfoSlugRoute
   '/product/$slug': typeof ProductSlugRoute
@@ -86,6 +94,7 @@ export interface FileRoutesById {
   '/cart': typeof CartRoute
   '/catalog': typeof CatalogRoute
   '/checkout': typeof CheckoutRoute
+  '/studio-49a60a9b': typeof Studio49a60a9bRoute
   '/wishlist': typeof WishlistRoute
   '/info/$slug': typeof InfoSlugRoute
   '/product/$slug': typeof ProductSlugRoute
@@ -98,6 +107,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/catalog'
     | '/checkout'
+    | '/studio-49a60a9b'
     | '/wishlist'
     | '/info/$slug'
     | '/product/$slug'
@@ -108,6 +118,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/catalog'
     | '/checkout'
+    | '/studio-49a60a9b'
     | '/wishlist'
     | '/info/$slug'
     | '/product/$slug'
@@ -118,6 +129,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/catalog'
     | '/checkout'
+    | '/studio-49a60a9b'
     | '/wishlist'
     | '/info/$slug'
     | '/product/$slug'
@@ -129,6 +141,7 @@ export interface RootRouteChildren {
   CartRoute: typeof CartRoute
   CatalogRoute: typeof CatalogRoute
   CheckoutRoute: typeof CheckoutRoute
+  Studio49a60a9bRoute: typeof Studio49a60a9bRoute
   WishlistRoute: typeof WishlistRoute
   InfoSlugRoute: typeof InfoSlugRoute
   ProductSlugRoute: typeof ProductSlugRoute
@@ -171,6 +184,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CheckoutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/studio-49a60a9b': {
+      id: '/studio-49a60a9b'
+      path: '/studio-49a60a9b'
+      fullPath: '/studio-49a60a9b'
+      preLoaderRoute: typeof Studio49a60a9bRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/wishlist': {
       id: '/wishlist'
       path: '/wishlist'
@@ -201,6 +221,7 @@ const rootRouteChildren: RootRouteChildren = {
   CartRoute: CartRoute,
   CatalogRoute: CatalogRoute,
   CheckoutRoute: CheckoutRoute,
+  Studio49a60a9bRoute: Studio49a60a9bRoute,
   WishlistRoute: WishlistRoute,
   InfoSlugRoute: InfoSlugRoute,
   ProductSlugRoute: ProductSlugRoute,
