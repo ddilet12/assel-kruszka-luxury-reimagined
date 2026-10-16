@@ -58,7 +58,7 @@ export const infoPages: Record<Locale, Record<InfoPageSlug, InfoPageCopy>> = {
       sections: [
         { heading: "Orders and prices", body: "Prices are shown in Kazakhstani tenge (₸). An order is confirmed once payment is received." },
         { heading: "Payment", body: "We accept payment through Kaspi Pay." },
-        { heading: "Delivery and returns", body: "Delivery and return terms are confirmed with you when you order; questions can be sent to info@asselkruszka.com." },
+        { heading: "Delivery and returns", body: "Delivery and returns are described on the Delivery and Returns & Exchanges pages and form part of these terms." },
         { heading: "Brand materials", body: "All photographs, texts and designs on this site belong to ASSEL KRUSZKA and may not be used without permission." },
         { heading: "Questions", body: "Questions about these terms: info@asselkruszka.com." },
       ],
@@ -114,7 +114,7 @@ export const infoPages: Record<Locale, Record<InfoPageSlug, InfoPageCopy>> = {
       sections: [
         { heading: "Заказы и цены", body: "Цены указаны в казахстанских тенге (₸). Заказ считается подтверждённым после получения оплаты." },
         { heading: "Оплата", body: "Мы принимаем оплату через Kaspi Pay." },
-        { heading: "Доставка и возврат", body: "Условия доставки и возврата подтверждаются при оформлении заказа; вопросы можно присылать на info@asselkruszka.com." },
+        { heading: "Доставка и возврат", body: "Условия доставки и возврата описаны на страницах «Доставка» и «Возврат и обмен» и являются частью этих условий." },
         { heading: "Материалы бренда", body: "Все фотографии, тексты и дизайн на сайте принадлежат ASSEL KRUSZKA и не могут использоваться без разрешения." },
         { heading: "Вопросы", body: "Вопросы по этим условиям: info@asselkruszka.com." },
       ],
