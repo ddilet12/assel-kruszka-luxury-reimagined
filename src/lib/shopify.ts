@@ -82,11 +82,14 @@ export async function fetchLiveCollections(): Promise<LiveCollection[]> {
     .map((c) => ({ handle: c.handle, title: c.title, productHandles: c.products.nodes.map((p) => p.handle) }));
 }
 
+/** The brand names the size option "Size" or "Размер" (or the plural) depending on the product. */
+export const isSizeOption = (name: string) => /^(size|sizes|размер|размеры)$/i.test(name.trim());
+
 export async function fetchLiveProducts(): Promise<LiveProduct[]> {
   const data = await shopifyFetch<{ products: { edges: { node: ShopifyProduct }[] } }>(PRODUCTS_QUERY);
   if (!data) return [];
   return data.products.edges.map(({ node: p }) => {
-    const sizeOption = p.options.find((o) => o.name === "Size");
+    const sizeOption = p.options.find((o) => isSizeOption(o.name));
     const colorOption = p.options.find((o) => o.name === "Color");
     return {
       handle: p.handle,
@@ -100,7 +103,7 @@ export async function fetchLiveProducts(): Promise<LiveProduct[]> {
       inStock: p.variants.edges.some((v) => v.node.availableForSale),
       variants: p.variants.edges.map(({ node: v }) => ({
         id: v.id,
-        size: v.selectedOptions.find((o) => o.name === "Size")?.value ?? "",
+        size: v.selectedOptions.find((o) => isSizeOption(o.name))?.value ?? "",
         color: v.selectedOptions.find((o) => o.name === "Color")?.value ?? "",
         availableForSale: v.availableForSale,
       })),

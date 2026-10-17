@@ -1,3 +1,4 @@
+import { isSizeOption } from "@/lib/shopify";
 import { createServerFn } from "@tanstack/react-start";
 import { createPaymentLink, ensureCatalogItems, isApiPayConfigured } from "@/lib/apipay.server";
 
@@ -88,7 +89,9 @@ export const createKaspiPaymentLink = createServerFn({ method: "POST" })
       // The buyer is charged exactly the Shopify price, tiyn included (QR payment accepts fractional tenge).
       const price = Math.round(Number(variant?.price.amount) * 100) / 100;
       if (!variant || !(price > 0)) throw new Error("empty_cart");
-      const options = variant.selectedOptions.filter((option) => option.name !== "Title").map((option) => option.value);
+      // Only the size is shown in the order line; stray extra options in Shopify must not leak into it.
+      const sizeValue = variant.selectedOptions.find((option) => isSizeOption(option.name))?.value;
+      const options = sizeValue ? [sizeValue] : variant.selectedOptions.filter((option) => option.name !== "Title").map((option) => option.value);
       return {
         slug: variant.product.handle,
         productTitle: variant.product.title,
