@@ -85,8 +85,8 @@ export const createKaspiPaymentLink = createServerFn({ method: "POST" })
     const variants = await loadVariants([...new Set(lines.map((line) => line.variantId))]);
     const priced = lines.map((line) => {
       const variant = variants.get(line.variantId);
-      // The storefront shows whole tenge (see fetchLiveProducts), so the buyer is charged the same rounded price.
-      const price = Math.round(Number(variant?.price.amount));
+      // The buyer is charged exactly the Shopify price, tiyn included (QR payment accepts fractional tenge).
+      const price = Math.round(Number(variant?.price.amount) * 100) / 100;
       if (!variant || !(price > 0)) throw new Error("empty_cart");
       const options = variant.selectedOptions.filter((option) => option.name !== "Title").map((option) => option.value);
       return {

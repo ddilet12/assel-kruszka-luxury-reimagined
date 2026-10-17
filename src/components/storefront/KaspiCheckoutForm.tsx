@@ -1,3 +1,4 @@
+import { AltPrice } from "@/components/storefront/AltPrice";
 import { useState, type FormEvent } from "react";
 import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -44,7 +45,7 @@ export function KaspiCheckoutForm({ lines, total, locale }: Props) {
   return (
     <main className="page-wrap mx-auto max-w-xl">
       <h1 className="font-display text-4xl">{t.kaspiTitle}</h1>
-      <p className="mt-3 text-muted-foreground">{t.total}: {money(total, locale)}</p>
+      <p className="mt-3 text-muted-foreground">{t.total}: {money(total, locale)}<AltPrice value={total} note/></p>
       <form className="mt-8 flex flex-col gap-2" onSubmit={handleSubmit}>
         <Label htmlFor="kaspi-name">{t.kaspiName}</Label>
         <Input id="kaspi-name" autoComplete="name" required maxLength={80} value={name} onChange={(event) => setName(event.target.value)} />

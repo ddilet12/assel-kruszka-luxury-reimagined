@@ -93,7 +93,7 @@ export async function fetchLiveProducts(): Promise<LiveProduct[]> {
       title: p.title,
       description: p.description,
       productType: p.productType,
-      price: Math.round(Number(p.priceRange.minVariantPrice.amount)),
+      price: Math.round(Number(p.priceRange.minVariantPrice.amount) * 100) / 100,
       sizes: sizeOption?.values ?? [],
       colors: colorOption?.values ?? [],
       images: p.images.edges.map((e) => e.node.url),

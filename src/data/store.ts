@@ -25,7 +25,7 @@ export const localProducts: Product[] = [
 export const categories=[
 {slug:"suits",en:"Suits",ru:"Костюмы",image:burgundy},{slug:"blazers",en:"Blazers",ru:"Пиджаки",image:burgundy},{slug:"jackets",en:"Jackets",ru:"Брючные костюмы",image:whiteSuit},{slug:"dresses",en:"Dresses",ru:"Платья",image:dress},{slug:"outerwear",en:"Outerwear",ru:"Верхняя одежда",image:burgundy},{slug:"sets",en:"Sets",ru:"Костюмы-комплекты",image:pinstripeNavyEditorial},{slug:"knitwear",en:"Knitwear",ru:"Трикотаж",image:knit},
 ];
-export const money=(value:number,locale:Locale)=>new Intl.NumberFormat(locale==="ru"?"ru-RU":"en-US").format(value)+" ₸";
+export const money=(value:number,locale:Locale)=>{const fractional=Math.abs(value-Math.round(value))>0.004;return new Intl.NumberFormat(locale==="ru"?"ru-RU":"en-US",{minimumFractionDigits:fractional?2:0,maximumFractionDigits:2}).format(value)+" ₸"};
 export const copy={
 en:{women:"Women",newIn:"New In",collections:"Collections",about:"About",shop:"Shop the collection",categories:"Categories",choose:"Choose your style",bestsellers:"Bestsellers",popular:"Most popular models",viewAll:"View all",aboutBrand:"About the brand",more:"More than just clothing",learn:"Learn more",quality:"Premium quality",delivery:"Fast delivery",payment:"Secure payment",care:"Care & support",search:"Search",wishlist:"Wishlist",bag:"Shopping bag",checkout:"Checkout",add:"Add to cart",size:"Select size",color:"Color",quantity:"Quantity",
   remove:"Remove",total:"Total",noProductsFound:"No products found.",wishlistEmpty:"Your wishlist is empty.",
