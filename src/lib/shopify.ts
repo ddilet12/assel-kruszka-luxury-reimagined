@@ -7,6 +7,8 @@ type ShopifyProduct = {
   handle: string;
   title: string;
   description: string;
+  /** Russian text from the product's "Описание (русский)" field in Shopify, if filled in. */
+  descriptionRu?: { value: string } | null;
   productType: string;
   priceRange: { minVariantPrice: ShopifyMoney };
   totalInventory: number | null;
@@ -21,6 +23,7 @@ export type LiveProduct = {
   handle: string;
   title: string;
   description: string;
+  descriptionRu: string;
   productType: string;
   price: number;
   sizes: string[];
@@ -55,6 +58,7 @@ const PRODUCTS_QUERY = `
           handle
           title
           description
+          descriptionRu: metafield(namespace: "custom", key: "description_ru") { value }
           productType
           totalInventory
           priceRange { minVariantPrice { amount } }
@@ -95,6 +99,7 @@ export async function fetchLiveProducts(): Promise<LiveProduct[]> {
       handle: p.handle,
       title: p.title,
       description: p.description,
+      descriptionRu: p.descriptionRu?.value ?? "",
       productType: p.productType,
       price: Math.round(Number(p.priceRange.minVariantPrice.amount) * 100) / 100,
       sizes: sizeOption?.values ?? [],

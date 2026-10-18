@@ -18,7 +18,7 @@ export function fromShopify(live: LiveProduct): Product {
     images: live.images,
     colors: live.colors,
     sizes: live.sizes,
-    description: { en: live.description, ru: live.description },
+    description: { en: live.description, ru: live.descriptionRu || live.description },
     inStock: live.inStock,
     variants: live.variants,
   };
