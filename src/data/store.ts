@@ -9,6 +9,14 @@ import pinstripeCharcoalSkirt from "@/assets/product-pinstripe-charcoal-skirt.jp
 import pinstripeNavyEditorial from "@/assets/product-pinstripe-navy-editorial.jpg";
 import pinstripeNavySet from "@/assets/product-pinstripe-navy-set.jpg";
 
+import catSuits from "@/assets/categories/suits.jpg";
+import catBlazers from "@/assets/categories/blazers.jpg";
+import catJackets from "@/assets/categories/jackets.jpg";
+import catDresses from "@/assets/categories/dresses.jpg";
+import catOuterwear from "@/assets/categories/outerwear.jpg";
+import catSets from "@/assets/categories/sets.jpg";
+import catKnitwear from "@/assets/categories/knitwear.jpg";
+
 export type Locale = "en" | "ru";
 export type ProductVariant = { id:string; size:string; color:string; availableForSale:boolean };
 export type Product = { id:string; slug:string; name:{en:string;ru:string}; price:number; category:string; images:string[]; colors:string[]; sizes:string[]; description:{en:string;ru:string}; inStock:boolean; variants?:ProductVariant[] };
@@ -23,7 +31,7 @@ export const localProducts: Product[] = [
 {id:"pinstripe-navy",slug:"pinstripe-suit-navy",name:{en:"The Saint-Germain set",ru:"The Saint-Germain set"},price:84990,category:"sets",images:[pinstripeNavyEditorial,pinstripeNavySet],colors:["Navy"],sizes:["XS","S","M","L"],description:{en:"A sharp pinstripe blazer and pencil skirt set with a red satin lining.",ru:"Чёткий костюм-комплект в полоску: пиджак и юбка-карандаш с красной атласной подкладкой."},inStock:true},
 ];
 export const categories=[
-{slug:"suits",en:"Suits",ru:"Костюмы",image:burgundy},{slug:"blazers",en:"Blazers",ru:"Пиджаки",image:burgundy},{slug:"jackets",en:"Jackets",ru:"Брючные костюмы",image:whiteSuit},{slug:"dresses",en:"Dresses",ru:"Платья",image:dress},{slug:"outerwear",en:"Outerwear",ru:"Верхняя одежда",image:burgundy},{slug:"sets",en:"Sets",ru:"Костюмы-комплекты",image:pinstripeNavyEditorial},{slug:"knitwear",en:"Knitwear",ru:"Трикотаж",image:knit},
+{slug:"suits",en:"Suits",ru:"Костюмы",image:catSuits},{slug:"blazers",en:"Blazers",ru:"Пиджаки",image:catBlazers},{slug:"jackets",en:"Jackets",ru:"Брючные костюмы",image:catJackets},{slug:"dresses",en:"Dresses",ru:"Платья",image:catDresses},{slug:"outerwear",en:"Outerwear",ru:"Верхняя одежда",image:catOuterwear},{slug:"sets",en:"Sets",ru:"Костюмы-комплекты",image:catSets},{slug:"knitwear",en:"Knitwear",ru:"Трикотаж",image:catKnitwear},
 ];
 export const money=(value:number,locale:Locale)=>{const fractional=Math.abs(value-Math.round(value))>0.004;return new Intl.NumberFormat(locale==="ru"?"ru-RU":"en-US",{minimumFractionDigits:fractional?2:0,maximumFractionDigits:2}).format(value)+" ₸"};
 export const copy={
