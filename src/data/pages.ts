@@ -14,12 +14,15 @@ export const infoPages: Record<Locale, Record<InfoPageSlug, InfoPageCopy>> = {
   en: {
     delivery: {
       title: "Delivery",
-      intro: "We deliver across Kazakhstan and can ship abroad on request.",
+      intro: "We deliver across Kazakhstan, to CIS countries and internationally to eligible destinations.",
       sections: [
         { heading: "Astana and Almaty", body: "1–2 business days by courier after your order ships." },
         { heading: "Other cities of Kazakhstan", body: "3–7 business days by courier or Kazpost, depending on the city." },
-        { heading: "Delivery cost", body: "Complimentary delivery across Kazakhstan on qualifying orders. We confirm the exact cost and date with you after you place the order." },
-        { heading: "International shipping", body: "Available on request: write to info@asselkruszka.com before ordering and we will tell you the terms for your country." },
+        { heading: "Shipping & delivery", body: "From Astana, Kazakhstan, to your wardrobe.\n\nInternational shipping is available to eligible destinations, subject to current courier coverage and local import requirements." },
+        { heading: "Shipping options", body: "Depending on your destination, shipping may be arranged through DHL Express, FedEx, UPS, or an alternative service such as QazPost/EMS or CDEK." },
+        { heading: "Estimated transit times", body: "DHL Express general estimates:\nEurope — including France, Germany, Italy, Spain, the Netherlands, Belgium, Austria, Poland, the United Kingdom and Switzerland: 2–3 days\nUnited States: 3–5 days*\nCanada: 3–5 days*\nAustralia: 3–5 days*\nBrazil: 3–5 days*\n\n* The 3–5-day estimate is DHL Kazakhstan’s general worldwide indication, rather than a confirmed delivery window for each country listed. Availability and transit time must be checked for your exact delivery address. Remote locations and customs clearance may require additional time." },
+        { heading: "Complimentary shipping & door-to-door delivery", body: "We offer complimentary shipping within Kazakhstan, to CIS countries and internationally to eligible destinations. Shipping is included in the price of your purchase.\n\nWe usually deliver orders directly to our customers’ doors, subject to courier coverage and local delivery conditions." },
+        { heading: "Import duties & taxes", body: "Complimentary shipping does not include import duties, VAT, local taxes or customs clearance fees that may apply in the destination country, including the United Arab Emirates, the United States, European countries, Canada, Australia and Brazil.\n\nAny such charges are determined by the destination country’s authorities and are the responsibility of the recipient. We do not cover or reimburse these charges. Payment may be required before your order can be released by customs or delivered.\n\nPlease check your local import requirements before placing your order." },
         { heading: "Tracking", body: "We contact you by phone or email when your order ships and send the tracking details, so you always know when to expect it." },
       ],
     },
@@ -80,12 +83,15 @@ export const infoPages: Record<Locale, Record<InfoPageSlug, InfoPageCopy>> = {
   ru: {
     delivery: {
       title: "Доставка",
-      intro: "Мы доставляем по всему Казахстану и можем отправить заказ за границу по запросу.",
+      intro: "Мы доставляем по всему Казахстану, в страны СНГ и в подходящие страны по всему миру.",
       sections: [
         { heading: "Астана и Алматы", body: "1–2 рабочих дня курьером после отправки заказа." },
         { heading: "Другие города Казахстана", body: "3–7 рабочих дней курьером или Казпочтой, в зависимости от города." },
-        { heading: "Стоимость доставки", body: "Бесплатная доставка по Казахстану при соответствующих условиях заказа. Точную стоимость и дату мы подтверждаем с вами после оформления заказа." },
-        { heading: "Доставка за границу", body: "Доступна по запросу: напишите на info@asselkruszka.com до заказа, и мы сообщим условия для вашей страны." },
+        { heading: "Доставка", body: "Из Астаны, Казахстан, прямо в ваш гардероб.\n\nМеждународная доставка доступна в подходящие страны с учётом текущего покрытия курьерских служб и местных правил импорта." },
+        { heading: "Способы доставки", body: "В зависимости от страны назначения доставка может быть организована через DHL Express, FedEx, UPS или альтернативные службы, такие как QazPost/EMS или CDEK." },
+        { heading: "Ориентировочные сроки доставки", body: "Ориентировочные сроки DHL Express:\nЕвропа — включая Францию, Германию, Италию, Испанию, Нидерланды, Бельгию, Австрию, Польшу, Великобританию и Швейцарию: 2–3 дня\nСША: 3–5 дней*\nКанада: 3–5 дней*\nАвстралия: 3–5 дней*\nБразилия: 3–5 дней*\n\n* Срок 3–5 дней — это общая ориентировочная оценка DHL Kazakhstan для международных отправлений, а не гарантированный период доставки для каждой из перечисленных стран. Возможность доставки и точное время в пути зависят от конкретного адреса назначения. В случае доставки в отдалённые районы или необходимости прохождения таможенного оформления может потребоваться дополнительное время." },
+        { heading: "Бесплатная доставка «до двери»", body: "Мы предлагаем бесплатную доставку по Казахстану, в страны СНГ, а также в ряд других стран. Стоимость доставки уже включена в цену вашего заказа.\n\nКак правило, мы осуществляем доставку заказов непосредственно «до двери» получателя (при условии наличия курьерского покрытия и с учётом местных условий доставки)." },
+        { heading: "Импортные пошлины и налоги", body: "Бесплатная доставка не покрывает импортные пошлины, НДС, местные налоги или таможенные сборы, которые могут взиматься в стране назначения (включая Объединённые Арабские Эмираты, США, страны Европы, Канаду, Австралию, Бразилию и другие государства).\n\nРазмер подобных платежей определяется органами власти страны назначения, и ответственность за их уплату лежит на получателе. Мы не покрываем и не возмещаем такие расходы. Для прохождения таможенной очистки или осуществления доставки может потребоваться предварительная оплата данных сборов.\n\nПожалуйста, ознакомьтесь с правилами импорта, действующими в вашей стране, перед оформлением заказа." },
         { heading: "Отслеживание", body: "Мы свяжемся с вами по телефону или почте, когда заказ будет отправлен, и пришлём данные для отслеживания — вы всегда будете знать, когда его ждать." },
       ],
     },

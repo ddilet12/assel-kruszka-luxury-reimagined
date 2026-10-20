@@ -7,9 +7,9 @@ import { Home } from "@/components/storefront/Home";
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
     { title: "ASSEL KRUSZKA — Rebellious Elegance" },
-    { name: "description", content: "Discover ASSEL KRUSZKA luxury women’s tailoring, dresses and knitwear." },
+    { name: "description", content: "Discover ASSEL KRUSZKA luxury women’s tailoring and dresses." },
     { property: "og:title", content: "ASSEL KRUSZKA — Rebellious Elegance" },
-    { property: "og:description", content: "Discover ASSEL KRUSZKA luxury women’s tailoring, dresses and knitwear." },
+    { property: "og:description", content: "Discover ASSEL KRUSZKA luxury women’s tailoring and dresses." },
     { property: "og:type", content: "website" },
     { name: "twitter:card", content: "summary_large_image" },
   ]}),

@@ -1,7 +1,6 @@
 import burgundy from "@/assets/product-burgundy.jpg";
 import dress from "@/assets/product-ivory-dress.jpg";
 import whiteSuit from "@/assets/product-white-suit.jpg";
-import knit from "@/assets/product-knit.jpg";
 import pinstripeWhiteBlazer from "@/assets/product-pinstripe-white-blazer.jpg";
 import pinstripeWhiteSkirt from "@/assets/product-pinstripe-white-skirt.jpg";
 import pinstripeCharcoalBlazer from "@/assets/product-pinstripe-charcoal-blazer.jpg";
@@ -15,7 +14,6 @@ import catJackets from "@/assets/categories/jackets.jpg";
 import catDresses from "@/assets/categories/dresses.jpg";
 import catOuterwear from "@/assets/categories/outerwear.jpg";
 import catSets from "@/assets/categories/sets.jpg";
-import catKnitwear from "@/assets/categories/knitwear.jpg";
 
 export type Locale = "en" | "ru";
 export type ProductVariant = { id:string; size:string; color:string; availableForSale:boolean };
@@ -25,13 +23,12 @@ export const localProducts: Product[] = [
 {id:"midi",slug:"midi-dress",name:{en:"Midi dress with a neckline",ru:"Платье миди с вырезом"},price:69990,category:"dresses",images:[dress,dress],colors:["Ivory","Black"],sizes:["XS","S","M","L"],description:{en:"A fluid midi dress with a softly draped neckline and sculpted waist.",ru:"Струящееся платье миди с мягкой драпировкой и подчеркнутой талией."},inStock:true},
 {id:"oversized",slug:"oversized-blazer",name:{en:"Oversized blazer",ru:"Пиджак оверсайз"},price:59990,category:"blazers",images:[burgundy,burgundy],colors:["Burgundy","Black"],sizes:["S","M","L"],description:{en:"Confident proportions and impeccable tailoring for modern layering.",ru:"Уверенные пропорции и безупречный крой для современных образов."},inStock:true},
 {id:"pantsuit",slug:"white-pantsuit",name:{en:"Pantsuit",ru:"Брючный костюм"},price:49990,category:"jackets",images:[whiteSuit,whiteSuit],colors:["Ivory","Burgundy"],sizes:["XS","S","M","L","XL"],description:{en:"A luminous ivory suit balancing clean structure with ease.",ru:"Светлый костюм, сочетающий чистую архитектуру кроя и свободу."},inStock:true},
-{id:"knit",slug:"knit-set",name:{en:"Knit set",ru:"Трикотажный комплект"},price:45990,category:"knitwear",images:[knit,knit],colors:["Cream","Charcoal"],sizes:["XS/S","M/L"],description:{en:"A refined ribbed set in a soft, substantial premium knit.",ru:"Изысканный комплект из мягкого плотного трикотажа премиум-класса."},inStock:true},
 {id:"pinstripe-white",slug:"pinstripe-suit-white",name:{en:"The Monaco Angel set",ru:"The Monaco Angel set"},price:79990,category:"sets",images:[pinstripeWhiteBlazer,pinstripeWhiteSkirt],colors:["White"],sizes:["XS","S","M","L"],description:{en:"A sharp pinstripe blazer and pencil skirt set with a red satin lining.",ru:"Чёткий костюм-комплект в полоску: пиджак и юбка-карандаш с красной атласной подкладкой."},inStock:true},
 {id:"pinstripe-charcoal",slug:"pinstripe-suit-charcoal",name:{en:"The Scarlet Line set",ru:"The Scarlet Line set"},price:74990,category:"sets",images:[pinstripeCharcoalBlazer,pinstripeCharcoalSkirt],colors:["Charcoal"],sizes:["XS","S","M","L"],description:{en:"A sharp pinstripe blazer and pencil skirt set with a red satin lining.",ru:"Чёткий костюм-комплект в полоску: пиджак и юбка-карандаш с красной атласной подкладкой."},inStock:true},
 {id:"pinstripe-navy",slug:"pinstripe-suit-navy",name:{en:"The Saint-Germain set",ru:"The Saint-Germain set"},price:84990,category:"sets",images:[pinstripeNavyEditorial,pinstripeNavySet],colors:["Navy"],sizes:["XS","S","M","L"],description:{en:"A sharp pinstripe blazer and pencil skirt set with a red satin lining.",ru:"Чёткий костюм-комплект в полоску: пиджак и юбка-карандаш с красной атласной подкладкой."},inStock:true},
 ];
 export const categories=[
-{slug:"suits",en:"Suits",ru:"Костюмы",image:catSuits},{slug:"blazers",en:"Blazers",ru:"Пиджаки",image:catBlazers},{slug:"jackets",en:"Jackets",ru:"Брючные костюмы",image:catJackets},{slug:"dresses",en:"Dresses",ru:"Платья",image:catDresses},{slug:"outerwear",en:"Outerwear",ru:"Верхняя одежда",image:catOuterwear},{slug:"sets",en:"Sets",ru:"Костюмы-комплекты",image:catSets},{slug:"knitwear",en:"Knitwear",ru:"Трикотаж",image:catKnitwear},
+{slug:"suits",en:"Suits",ru:"Костюмы",image:catSuits},{slug:"blazers",en:"Blazers",ru:"Пиджаки",image:catBlazers},{slug:"jackets",en:"Jackets",ru:"Брючные костюмы",image:catJackets},{slug:"dresses",en:"Dresses",ru:"Платья",image:catDresses},{slug:"outerwear",en:"Outerwear",ru:"Верхняя одежда",image:catOuterwear},{slug:"sets",en:"Sets",ru:"Костюмы-комплекты",image:catSets},
 ];
 export const money=(value:number,locale:Locale)=>{const fractional=Math.abs(value-Math.round(value))>0.004;return new Intl.NumberFormat(locale==="ru"?"ru-RU":"en-US",{minimumFractionDigits:fractional?2:0,maximumFractionDigits:2}).format(value)+" ₸"};
 export const copy={

@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useStore } from "@/state/storefront";
 import { infoPages, SELLER, type InfoPageSlug } from "@/data/pages";
+import { SizeGuide } from "@/components/storefront/SizeGuide";
 
 export const Route = createFileRoute("/info/$slug")({
   loader: ({ params }) => {
@@ -23,8 +24,9 @@ function InfoPage() {
       <div className="mx-auto max-w-2xl">
         <h1 className="font-display text-4xl">{page.title}</h1>
         <p className="mt-4 text-sm leading-7 text-muted-foreground">{page.intro}</p>
+        {slug === "size-guide" ? <SizeGuide locale={locale} /> : null}
         <div className="mt-8 space-y-7">
-          {page.sections.map((s) => (
+          {slug !== "size-guide" && page.sections.map((s) => (
             <section key={s.heading}>
               <h2 className="text-sm font-semibold">{s.heading}</h2>
               <p className="mt-2 whitespace-pre-line text-sm leading-7 text-muted-foreground">{s.body}</p>
