@@ -12,13 +12,13 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { StorefrontProvider } from "../state/storefront";
-import { useStore } from "../state/storefront";
+import { useLocaleSafe } from "../state/storefront";
 import { copy } from "../data/store";
 import { Header } from "../components/storefront/Header";
 import { Footer } from "../components/storefront/Footer";
 
 function NotFoundComponent() {
-  const { locale } = useStore();
+  const locale = useLocaleSafe();
   const t = copy[locale];
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -42,7 +42,7 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: { error: unknown; reset: () => void }) {
   console.error(error);
   const router = useRouter();
-  const { locale } = useStore();
+  const locale = useLocaleSafe();
   const t = copy[locale];
   useEffect(() => {
     reportLovableError(error, { boundary: "tanstack_root_error_component" });
@@ -87,14 +87,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:description", content: "Luxury women’s fashion defined by rebellious elegance." },
       { property: "og:type", content: "website" },
       // Social-preview image: the ASSEL KRUSZKA wordmark logo on a light card.
-      // Uses the current production URL since the project has no permanent
-      // domain yet — update this if/when a custom domain is connected.
-      { property: "og:image", content: "https://assel-kruszka-luxury-reimagined.vercel.app/og-image.png" },
+      { property: "og:image", content: "https://asselkruszka.com/og-image.png" },
       { property: "og:image:width", content: "1200" },
       { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:image", content: "https://assel-kruszka-luxury-reimagined.vercel.app/og-image.png" },
+      { name: "twitter:image", content: "https://asselkruszka.com/og-image.png" },
     ],
     links: [
       {

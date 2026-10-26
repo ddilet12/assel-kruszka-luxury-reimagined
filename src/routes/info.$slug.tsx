@@ -5,7 +5,7 @@ import { SizeGuide } from "@/components/storefront/SizeGuide";
 
 export const Route = createFileRoute("/info/$slug")({
   loader: ({ params }) => {
-    if (!(params.slug in infoPages.en)) throw notFound();
+    if (!Object.hasOwn(infoPages.en, params.slug)) throw notFound();
     return { slug: params.slug as InfoPageSlug };
   },
   head: ({ loaderData }) => {
