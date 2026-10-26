@@ -1,6 +1,6 @@
 import type { Locale } from "@/data/store";
 
-export type InfoPageSlug = "delivery" | "returns" | "size-guide" | "loyalty" | "privacy" | "terms";
+export type InfoPageSlug = "delivery" | "payment" | "returns" | "size-guide" | "loyalty" | "privacy" | "terms";
 
 type InfoPageCopy = { title: string; intro: string; sections: { heading: string; body: string }[] };
 
@@ -24,6 +24,15 @@ export const infoPages: Record<Locale, Record<InfoPageSlug, InfoPageCopy>> = {
         { heading: "Complimentary shipping & door-to-door delivery", body: "We offer complimentary shipping within Kazakhstan, to CIS countries and internationally to eligible destinations. Shipping is included in the price of your purchase.\n\nWe usually deliver orders directly to our customers’ doors, subject to courier coverage and local delivery conditions." },
         { heading: "Import duties & taxes", body: "Complimentary shipping does not include import duties, VAT, local taxes or customs clearance fees that may apply in the destination country, including the United Arab Emirates, the United States, European countries, Canada, Australia and Brazil.\n\nAny such charges are determined by the destination country’s authorities and are the responsibility of the recipient. We do not cover or reimburse these charges. Payment may be required before your order can be released by customs or delivered.\n\nPlease check your local import requirements before placing your order." },
         { heading: "Tracking", body: "We contact you by phone or email when your order ships and send the tracking details, so you always know when to expect it." },
+      ],
+    },
+    payment: {
+      title: "Payment",
+      intro: "Payment for customers in Kazakhstan.",
+      sections: [
+        { heading: "Payment methods via Kaspi", body: "Assel Kruszka (AK) offers the following Kaspi payment methods:\n• payment by invoice in the Kaspi.kz app;\n• Kaspi Credit;\n• Kaspi Red;\n• 0-0-12 instalments.\n\nThese payment methods are available for all items of our brand, subject to the availability of the relevant Kaspi service." },
+        { heading: "How to place an order", body: "Choose your items and contact us via WhatsApp or the store’s official email. Tell us the names of the items or send their photos, and let us know the sizes you need and your preferred payment method. We will explain the next steps and help you place the order.\n\nIf you prefer to pay in the Kaspi.kz app, send us the phone number linked to your Kaspi account. We will issue an invoice for payment in the app — you will not need to enter any bank card details on the website.\n\nFor a purchase on credit, via Kaspi Red or in 0-0-12 instalments, please let us know in advance. The availability of the chosen payment method and the approval of the purchase are determined by Kaspi Bank in accordance with the bank’s current terms." },
+        { heading: "Exchanges & returns", body: "Purchases paid via Kaspi, including on credit, in instalments or via Kaspi Red, are subject to the exchange and return rules under the law of the Republic of Kazakhstan. The payment method does not limit the buyer’s rights. Whether an item can be exchanged or returned depends on its category, its condition and the time limits set by law.\n\nOnce a return is approved, we refund the payment through the original Kaspi transaction. Cancellation or recalculation of the credit, instalment plan or Kaspi Red balance is handled by the bank.\n\nFull terms are set out in the “Returns & Exchanges” section." },
       ],
     },
     returns: {
@@ -93,6 +102,15 @@ export const infoPages: Record<Locale, Record<InfoPageSlug, InfoPageCopy>> = {
         { heading: "Бесплатная доставка «до двери»", body: "Мы предлагаем бесплатную доставку по Казахстану, в страны СНГ, а также в ряд других стран. Стоимость доставки уже включена в цену вашего заказа.\n\nКак правило, мы осуществляем доставку заказов непосредственно «до двери» получателя (при условии наличия курьерского покрытия и с учётом местных условий доставки)." },
         { heading: "Импортные пошлины и налоги", body: "Бесплатная доставка не покрывает импортные пошлины, НДС, местные налоги или таможенные сборы, которые могут взиматься в стране назначения (включая Объединённые Арабские Эмираты, США, страны Европы, Канаду, Австралию, Бразилию и другие государства).\n\nРазмер подобных платежей определяется органами власти страны назначения, и ответственность за их уплату лежит на получателе. Мы не покрываем и не возмещаем такие расходы. Для прохождения таможенной очистки или осуществления доставки может потребоваться предварительная оплата данных сборов.\n\nПожалуйста, ознакомьтесь с правилами импорта, действующими в вашей стране, перед оформлением заказа." },
         { heading: "Отслеживание", body: "Мы свяжемся с вами по телефону или почте, когда заказ будет отправлен, и пришлём данные для отслеживания — вы всегда будете знать, когда его ждать." },
+      ],
+    },
+    payment: {
+      title: "Оплата",
+      intro: "Оплата для покупателей из Казахстана.",
+      sections: [
+        { heading: "Способы оплаты через Kaspi", body: "В Assel Kruszka (AK) доступны следующие способы оплаты через Kaspi:\n• оплата по счёту в приложении Kaspi.kz;\n• Kaspi Кредит;\n• Kaspi Red;\n• рассрочка 0-0-12.\n\nЭти способы оплаты доступны для всех товаров нашего бренда при условии доступности соответствующего сервиса Kaspi." },
+        { heading: "Как оформить покупку", body: "Выберите товары и свяжитесь с нами через WhatsApp или официальный email магазина. Укажите названия товаров или отправьте их фотографии, сообщите нужные размеры и предпочтительный способ оплаты. Мы подскажем дальнейшие шаги и поможем с оформлением заказа.\n\nЕсли вам удобнее оплатить покупку через приложение Kaspi.kz, сообщите нам номер телефона, привязанный к вашему Kaspi. Мы выставим счёт для оплаты в приложении — вводить данные банковской карты на сайте не потребуется.\n\nДля покупки в кредит, через Kaspi Red или в рассрочку 0-0-12 сообщите нам об этом заранее. Доступность выбранного способа оплаты и одобрение покупки определяются Kaspi Bank в соответствии с действующими условиями банка." },
+        { heading: "Обмен и возврат", body: "На покупки, оплаченные через Kaspi, в том числе в кредит, рассрочку или через Kaspi Red, распространяются правила обмена и возврата согласно законодательству Республики Казахстан. Способ оплаты не ограничивает права покупателя. Возможность обмена или возврата зависит от категории товара, его состояния и установленных законом сроков.\n\nПри одобренном возврате мы оформляем возврат оплаты через исходную операцию Kaspi. Аннулирование или перерасчёт кредита, рассрочки либо задолженности по Kaspi Red осуществляется банком.\n\nПодробные условия приведены в разделе «Обмен и возврат»." },
       ],
     },
     returns: {

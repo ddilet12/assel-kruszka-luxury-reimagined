@@ -2,9 +2,16 @@ import { useQuery } from "@tanstack/react-query";
 import { localProducts, categories, type Product } from "@/data/store";
 import { fetchLiveCollections, fetchLiveProducts, type LiveCollection, type LiveProduct } from "@/lib/shopify";
 
-function mapCategory(productType: string): string {
+// Products whose Shopify type is missing (or the catch-all "all") are filed by a word in their title.
+const TITLE_CATEGORIES: [RegExp, string][] = [
+  [/\bskirts?\b/i, "skirts"],
+  [/\b(trousers?|pants)\b/i, "trousers"],
+];
+
+function mapCategory(productType: string, title = ""): string {
   const match = categories.find((c) => c.en.toLowerCase() === productType.trim().toLowerCase());
-  return match?.slug ?? "";
+  if (match) return match.slug;
+  return TITLE_CATEGORIES.find(([pattern]) => pattern.test(title))?.[1] ?? "";
 }
 
 // One language per product: titles and descriptions are edited in Shopify, so both locales show them as written.
@@ -14,7 +21,7 @@ export function fromShopify(live: LiveProduct): Product {
     slug: live.handle,
     name: { en: live.title, ru: live.title },
     price: live.price,
-    category: mapCategory(live.productType),
+    category: mapCategory(live.productType, live.title),
     images: live.images,
     colors: live.colors,
     sizes: live.sizes,

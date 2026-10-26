@@ -14,6 +14,8 @@ import catJackets from "@/assets/categories/jackets.jpg";
 import catDresses from "@/assets/categories/dresses.jpg";
 import catOuterwear from "@/assets/categories/outerwear.jpg";
 import catSets from "@/assets/categories/sets.jpg";
+import catTrousers from "@/assets/categories/trousers.jpg";
+import catSkirts from "@/assets/categories/skirts.jpg";
 
 export type Locale = "en" | "ru";
 export type ProductVariant = { id:string; size:string; color:string; availableForSale:boolean };
@@ -28,7 +30,7 @@ export const localProducts: Product[] = [
 {id:"pinstripe-navy",slug:"pinstripe-suit-navy",name:{en:"The Saint-Germain set",ru:"The Saint-Germain set"},price:84990,category:"sets",images:[pinstripeNavyEditorial,pinstripeNavySet],colors:["Navy"],sizes:["XS","S","M","L"],description:{en:"A sharp pinstripe blazer and pencil skirt set with a red satin lining.",ru:"Чёткий костюм-комплект в полоску: пиджак и юбка-карандаш с красной атласной подкладкой."},inStock:true},
 ];
 export const categories=[
-{slug:"suits",en:"Suits",ru:"Костюмы",image:catSuits},{slug:"blazers",en:"Blazers",ru:"Пиджаки",image:catBlazers},{slug:"jackets",en:"Jackets",ru:"Брючные костюмы",image:catJackets},{slug:"dresses",en:"Dresses",ru:"Платья",image:catDresses},{slug:"outerwear",en:"Outerwear",ru:"Верхняя одежда",image:catOuterwear},{slug:"sets",en:"Sets",ru:"Костюмы-комплекты",image:catSets},
+{slug:"suits",en:"Suits",ru:"Костюмы",image:catSuits},{slug:"blazers",en:"Blazers",ru:"Пиджаки",image:catBlazers},{slug:"jackets",en:"Jackets",ru:"Брючные костюмы",image:catJackets},{slug:"dresses",en:"Dresses",ru:"Платья",image:catDresses},{slug:"skirts",en:"Skirts",ru:"Юбки",image:catSkirts},{slug:"trousers",en:"Trousers",ru:"Брюки",image:catTrousers},{slug:"outerwear",en:"Outerwear",ru:"Верхняя одежда",image:catOuterwear},{slug:"sets",en:"Sets",ru:"Костюмы-комплекты",image:catSets},
 ];
 export const money=(value:number,locale:Locale)=>{const fractional=Math.abs(value-Math.round(value))>0.004;return new Intl.NumberFormat(locale==="ru"?"ru-RU":"en-US",{minimumFractionDigits:fractional?2:0,maximumFractionDigits:2}).format(value)+" ₸"};
 export const copy={
@@ -55,9 +57,9 @@ ru:{women:"Женщины",newIn:"Новинки",collections:"Коллекци�
   redirectingCheckout:"Перенаправляем вас на безопасную оплату…",kaspiTitle:"Оформление заказа",kaspiName:"Имя и фамилия",kaspiPhone:"Номер телефона",kaspiAddress:"Адрес доставки (город, улица, дом)",kaspiComment:"Комментарий (необязательно)",kaspiPay:"Оплатить через Kaspi",kaspiCreating:"Открываем оплату…",kaspiNote:"Вы перейдёте на защищённую страницу оплаты Kaspi Pay (сервис ApiPay). Заказ подтверждаем после оплаты.",kaspiErrName:"Введите имя.",kaspiErrPhone:"Введите номер телефона Казахстана, например +7 701 123 45 67.",kaspiErrAddress:"Введите адрес доставки.",kaspiErrComment:"Комментарий слишком длинный.",kaspiErrEmpty:"Корзина пуста.",kaspiErrGeneric:"Не удалось открыть страницу оплаты. Попробуйте ещё раз или напишите нам.",cartEmptyCheckout:"Ваша корзина пуста.",checkoutErrorTitle:"Оформление сейчас недоступно",checkoutErrorText:"Не удалось начать оформление заказа. Попробуйте ещё раз чуть позже или напишите нам.",
   }}
 export const footerNav={
-en:[{title:"Navigation",links:["Search","Customer Care","Contact Us","Delivery","Returns & Exchanges","Size Guide","Loyalty Program"]},
+en:[{title:"Navigation",links:["Search","Customer Care","Contact Us","Delivery","Payment","Returns & Exchanges","Size Guide","Loyalty Program"]},
     {title:"About the Brand",links:["About Us","Partners","Wholesale Enquiries"]},
     {title:"Legal Information",links:["Privacy Policy","Terms of Service"]}],
-ru:[{title:"Навигация",links:["Поиск","Помощь клиентам","Связаться с нами","Доставка","Возврат и обмен","Таблица размеров","Программа лояльности"]},
+ru:[{title:"Навигация",links:["Поиск","Помощь клиентам","Связаться с нами","Доставка","Оплата","Возврат и обмен","Таблица размеров","Программа лояльности"]},
     {title:"О бренде",links:["О нас","Партнёры","Оптовые предложения"]},
     {title:"Правовая информация",links:["Политика конфиденциальности","Условия использования"]}]}

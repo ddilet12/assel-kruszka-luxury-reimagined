@@ -5,7 +5,7 @@ const CONTACT_EMAIL="info@asselkruszka.com";
 const MAIL_LABELS:Record<string,string>={"Customer Care":"","Помощь клиентам":"","Contact Us":"","Связаться с нами":"","Partners":"?subject=Partnership","Партнёры":"?subject=Partnership","Wholesale Enquiries":"?subject=Wholesale","Оптовые предложения":"?subject=Wholesale"};
 const SEARCH_LABELS=["Search","Поиск"];
 const ABOUT_LABELS=["About Us","О нас"];
-const INFO_LABELS:Record<string,string>={"Delivery":"delivery","Доставка":"delivery","Returns & Exchanges":"returns","Возврат и обмен":"returns","Size Guide":"size-guide","Таблица размеров":"size-guide","Loyalty Program":"loyalty","Программа лояльности":"loyalty","Privacy Policy":"privacy","Политика конфиденциальности":"privacy","Terms of Service":"terms","Условия использования":"terms"};
+const INFO_LABELS:Record<string,string>={"Delivery":"delivery","Доставка":"delivery","Payment":"payment","Оплата":"payment","Returns & Exchanges":"returns","Возврат и обмен":"returns","Size Guide":"size-guide","Таблица размеров":"size-guide","Loyalty Program":"loyalty","Программа лояльности":"loyalty","Privacy Policy":"privacy","Политика конфиденциальности":"privacy","Terms of Service":"terms","Условия использования":"terms"};
 const KASPI_PHONE="+7 778 965 4642";
 
 // Brand social links. Add TikTok / WhatsApp later by filling `url` and adding an icon: a link without a url is not shown.
@@ -16,7 +16,7 @@ const SOCIALS:{id:string;label:string;url:string|null;icon:()=>ReactNode}[]=[
 {id:"instagram",label:"Instagram",url:"https://www.instagram.com/assel.kruszka/",icon:()=><Instagram className="size-4"/>},
 {id:"pinterest",label:"Pinterest",url:"https://pin.it/2PTvwHr6a",icon:PinterestIcon},
 {id:"tiktok",label:"TikTok",url:null,icon:TikTokIcon},
-{id:"whatsapp",label:"WhatsApp",url:null,icon:WhatsAppIcon},
+{id:"whatsapp",label:"WhatsApp",url:"https://wa.me/qr/G6ZZJNGLIGDBP1",icon:WhatsAppIcon},
 ];
 function SocialLinks(){return <>{SOCIALS.filter(x=>x.url).map(x=><a key={x.id} href={x.url!} target="_blank" rel="noopener noreferrer" aria-label={x.label} title={x.label} className="flex size-8 items-center justify-center rounded-full border border-footer-line text-footer-foreground transition-colors hover:border-footer-foreground hover:bg-footer-foreground/10">{x.icon()}</a>)}</>}
 function FooterLink({label}:{label:string}){const{setSearchOpen}=useStore();
@@ -32,7 +32,7 @@ export function Footer(){const{locale,setLocale,setSearchOpen}=useStore();const 
 <p className="mt-5 text-[10px] uppercase tracking-[0.14em] text-footer-muted">{t.paymentMethodsLabel}</p>
 <div className="mt-2.5 flex">
   <span className="rounded-sm border border-footer-foreground/35 px-3 py-1.5 text-left">
-    <span className="block font-display text-[13px] tracking-wide text-footer-foreground">Kaspi Pay</span>
+    <Link to="/info/$slug" params={{slug:"payment"}} className="block font-display text-[13px] tracking-wide text-footer-foreground underline-offset-4 hover:underline">Kaspi Pay</Link>
     <a href={`tel:${KASPI_PHONE.replace(/\s/g,"")}`} className="block py-1.5 text-[10px] text-footer-muted hover:text-footer-foreground">{KASPI_PHONE}</a>
   </span>
 </div>

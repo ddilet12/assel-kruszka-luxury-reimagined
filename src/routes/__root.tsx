@@ -16,6 +16,7 @@ import { useLocaleSafe } from "../state/storefront";
 import { copy } from "../data/store";
 import { Header } from "../components/storefront/Header";
 import { Footer } from "../components/storefront/Footer";
+import { LocalizedTitle } from "../components/storefront/LocalizedTitle";
 
 function NotFoundComponent() {
   const locale = useLocaleSafe();
@@ -138,6 +139,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <StorefrontProvider>
+        <LocalizedTitle />
         <Header />
         <Outlet />
         <Footer />
