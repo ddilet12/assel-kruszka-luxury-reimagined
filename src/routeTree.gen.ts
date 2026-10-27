@@ -14,6 +14,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as CartRouteImport } from './routes/cart'
 import { Route as CatalogRouteImport } from './routes/catalog'
 import { Route as CheckoutRouteImport } from './routes/checkout'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as LookbookRouteImport } from './routes/lookbook'
 import { Route as WishlistRouteImport } from './routes/wishlist'
 import { Route as InfoSlugRouteImport } from './routes/info.$slug'
@@ -44,6 +45,11 @@ const CheckoutRoute = CheckoutRouteImport.update({
   path: '/checkout',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LookbookRoute = LookbookRouteImport.update({
   id: '/lookbook',
   path: '/lookbook',
@@ -71,6 +77,7 @@ export interface FileRoutesByFullPath {
   '/cart': typeof CartRoute
   '/catalog': typeof CatalogRoute
   '/checkout': typeof CheckoutRoute
+  '/contact': typeof ContactRoute
   '/lookbook': typeof LookbookRoute
   '/wishlist': typeof WishlistRoute
   '/info/$slug': typeof InfoSlugRoute
@@ -82,6 +89,7 @@ export interface FileRoutesByTo {
   '/cart': typeof CartRoute
   '/catalog': typeof CatalogRoute
   '/checkout': typeof CheckoutRoute
+  '/contact': typeof ContactRoute
   '/lookbook': typeof LookbookRoute
   '/wishlist': typeof WishlistRoute
   '/info/$slug': typeof InfoSlugRoute
@@ -94,6 +102,7 @@ export interface FileRoutesById {
   '/cart': typeof CartRoute
   '/catalog': typeof CatalogRoute
   '/checkout': typeof CheckoutRoute
+  '/contact': typeof ContactRoute
   '/lookbook': typeof LookbookRoute
   '/wishlist': typeof WishlistRoute
   '/info/$slug': typeof InfoSlugRoute
@@ -107,6 +116,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/catalog'
     | '/checkout'
+    | '/contact'
     | '/lookbook'
     | '/wishlist'
     | '/info/$slug'
@@ -118,6 +128,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/catalog'
     | '/checkout'
+    | '/contact'
     | '/lookbook'
     | '/wishlist'
     | '/info/$slug'
@@ -129,6 +140,7 @@ export interface FileRouteTypes {
     | '/cart'
     | '/catalog'
     | '/checkout'
+    | '/contact'
     | '/lookbook'
     | '/wishlist'
     | '/info/$slug'
@@ -141,6 +153,7 @@ export interface RootRouteChildren {
   CartRoute: typeof CartRoute
   CatalogRoute: typeof CatalogRoute
   CheckoutRoute: typeof CheckoutRoute
+  ContactRoute: typeof ContactRoute
   LookbookRoute: typeof LookbookRoute
   WishlistRoute: typeof WishlistRoute
   InfoSlugRoute: typeof InfoSlugRoute
@@ -184,6 +197,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CheckoutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/lookbook': {
       id: '/lookbook'
       path: '/lookbook'
@@ -221,6 +241,7 @@ const rootRouteChildren: RootRouteChildren = {
   CartRoute: CartRoute,
   CatalogRoute: CatalogRoute,
   CheckoutRoute: CheckoutRoute,
+  ContactRoute: ContactRoute,
   LookbookRoute: LookbookRoute,
   WishlistRoute: WishlistRoute,
   InfoSlugRoute: InfoSlugRoute,

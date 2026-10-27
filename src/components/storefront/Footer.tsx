@@ -3,6 +3,7 @@ import { Instagram,Search,ChevronDown } from "lucide-react";import { Link } from
 const CONTACT_EMAIL="info@asselkruszka.com";
 // Footer entries that are just a way to reach the brand open an email; the value is an optional mailto query.
 const MAIL_LABELS:Record<string,string>={"Customer Care":"","Помощь клиентам":"","Contact Us":"","Связаться с нами":"","Partners":"?subject=Partnership","Партнёры":"?subject=Partnership","Wholesale Enquiries":"?subject=Wholesale","Оптовые предложения":"?subject=Wholesale"};
+const CONTACT_LABELS=["Customer Care","Помощь клиентам","Contact Us","Связаться с нами"];
 const SEARCH_LABELS=["Search","Поиск"];
 const ABOUT_LABELS=["About Us","О нас"];
 const INFO_LABELS:Record<string,string>={"Delivery":"delivery","Доставка":"delivery","Payment":"payment","Оплата":"payment","Returns & Exchanges":"returns","Возврат и обмен":"returns","Size Guide":"size-guide","Таблица размеров":"size-guide","Loyalty Program":"loyalty","Программа лояльности":"loyalty","Privacy Policy":"privacy","Политика конфиденциальности":"privacy","Terms of Service":"terms","Условия использования":"terms"};
@@ -22,6 +23,7 @@ function SocialLinks(){return <>{SOCIALS.filter(x=>x.url).map(x=><a key={x.id} h
 function FooterLink({label}:{label:string}){const{setSearchOpen}=useStore();
 if(SEARCH_LABELS.includes(label))return <button type="button" className="text-left" onClick={()=>setSearchOpen(true)}>{label}</button>;
 if(ABOUT_LABELS.includes(label))return <Link to="/about">{label}</Link>;
+if(CONTACT_LABELS.includes(label))return <Link to="/contact">{label}</Link>;
 if(label in MAIL_LABELS)return <a href={`mailto:${CONTACT_EMAIL}${MAIL_LABELS[label]}`}>{label}</a>;
 const slug=INFO_LABELS[label];if(slug)return <Link to="/info/$slug" params={{slug}}>{label}</Link>;
 return <span>{label}</span>}
