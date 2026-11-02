@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Check, Copy, Instagram, Mail, MessageCircle, Phone } from "lucide-react";
 import { useState } from "react";
 import { useStore } from "@/state/storefront";
+import { WHATSAPP_URL } from "@/lib/contacts";
 
 const EMAIL = "info@asselkruszka.com";
 const PHONE = "+7 778 965 4642";
@@ -38,7 +39,7 @@ function Contact() {
           {ru ? "Мы ответим как можно скорее. Выберите удобный способ связи." : "We reply as soon as we can. Choose the way that suits you."}
         </p>
         <div className="mt-8 grid gap-3">
-          <a className={card} href="https://wa.me/qr/G6ZZJNGLIGDBP1" target="_blank" rel="noopener noreferrer">
+          <a className={card} href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer">
             <MessageCircle className="size-5 shrink-0" aria-hidden="true" />
             <span><strong className="block text-sm font-medium">WhatsApp</strong><small className="text-muted-foreground">{PHONE}</small></span>
           </a>

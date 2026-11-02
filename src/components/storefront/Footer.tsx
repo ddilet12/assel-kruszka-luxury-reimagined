@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { WHATSAPP_URL } from "@/lib/contacts";
 import { Instagram,Search,ChevronDown } from "lucide-react";import { Link } from "@tanstack/react-router";import { Brand } from "./Brand";import { useStore } from "@/state/storefront";import { copy,footerNav } from "@/data/store";import { Accordion,AccordionContent,AccordionItem,AccordionTrigger } from "@/components/ui/accordion";
 const CONTACT_EMAIL="info@asselkruszka.com";
 // Footer entries that are just a way to reach the brand open an email; the value is an optional mailto query.
@@ -17,7 +18,7 @@ const SOCIALS:{id:string;label:string;url:string|null;icon:()=>ReactNode}[]=[
 {id:"instagram",label:"Instagram",url:"https://www.instagram.com/assel.kruszka/",icon:()=><Instagram className="size-4"/>},
 {id:"pinterest",label:"Pinterest",url:"https://pin.it/2PTvwHr6a",icon:PinterestIcon},
 {id:"tiktok",label:"TikTok",url:"https://www.tiktok.com/@assel.kruszkabrand",icon:TikTokIcon},
-{id:"whatsapp",label:"WhatsApp",url:"https://wa.me/qr/G6ZZJNGLIGDBP1",icon:WhatsAppIcon},
+{id:"whatsapp",label:"WhatsApp",url:WHATSAPP_URL,icon:WhatsAppIcon},
 ];
 function SocialLinks(){return <>{SOCIALS.filter(x=>x.url).map(x=><a key={x.id} href={x.url!} target="_blank" rel="noopener noreferrer" aria-label={x.label} title={x.label} className="flex size-8 items-center justify-center rounded-full border border-footer-line text-footer-foreground transition-colors hover:border-footer-foreground hover:bg-footer-foreground/10">{x.icon()}</a>)}</>}
 function FooterLink({label}:{label:string}){const{setSearchOpen}=useStore();

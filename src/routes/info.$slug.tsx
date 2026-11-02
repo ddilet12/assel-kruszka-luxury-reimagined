@@ -2,6 +2,20 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useStore } from "@/state/storefront";
 import { infoPages, SELLER, type InfoPageSlug } from "@/data/pages";
 import { SizeGuide } from "@/components/storefront/SizeGuide";
+import { CONTACT_EMAIL, WHATSAPP_URL } from "@/lib/contacts";
+
+// Turns mentions of WhatsApp and the store email in page copy into working links.
+function linkify(text: string) {
+  return text.split(new RegExp(`(WhatsApp|${CONTACT_EMAIL.replace(/\./g, "\\.")})`)).map((part, i) => {
+    if (part === "WhatsApp") {
+      return <a key={i} href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-4">WhatsApp</a>;
+    }
+    if (part === CONTACT_EMAIL) {
+      return <a key={i} href={`mailto:${CONTACT_EMAIL}`} className="text-primary underline underline-offset-4">{CONTACT_EMAIL}</a>;
+    }
+    return part;
+  });
+}
 
 export const Route = createFileRoute("/info/$slug")({
   loader: ({ params }) => {
@@ -29,7 +43,7 @@ function InfoPage() {
           {slug !== "size-guide" && page.sections.map((s) => (
             <section key={s.heading}>
               <h2 className="text-sm font-semibold">{s.heading}</h2>
-              <p className="mt-2 whitespace-pre-line text-sm leading-7 text-muted-foreground">{s.body}</p>
+              <p className="mt-2 whitespace-pre-line text-sm leading-7 text-muted-foreground">{linkify(s.body)}</p>
             </section>
           ))}
           {slug === "terms" && SELLER.name && (
